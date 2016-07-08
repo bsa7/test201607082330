@@ -5,9 +5,7 @@ cache:
   bundler: true
 
 env:
-  - DB=mysql2
-  - RAILS_ENV=test
-  - SH=bash
+  - DB=mysql2 RAILS_ENV=test SH=bash
 
 bundler_args: --without test --jobs 3 --retry 3
 before_install:
