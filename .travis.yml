@@ -1,0 +1,18 @@
+language: ruby
+sudo: false
+
+cache:
+  bundler: true
+
+env:
+  - DB=mysql2 RAILS_ENV=test SH=bash
+
+bundler_args: --without test --jobs 3 --retry 3
+before_install:
+  - "rm ${BUNDLE_GEMFILE}.lock"
+
+before_script:
+  - bundle update
+
+rvm:
+  - 2.3.1
