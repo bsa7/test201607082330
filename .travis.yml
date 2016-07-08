@@ -14,7 +14,5 @@ before_install:
 before_script:
   - bundle update
 
-script: 'ci/travis.rb'
-
 rvm:
   - 2.3.1
