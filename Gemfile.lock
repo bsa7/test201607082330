@@ -68,6 +68,8 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    codeclimate-test-reporter (0.6.0)
+      simplecov (>= 0.7.1, < 1.0.0)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -75,24 +77,17 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    colorize (0.8.1)
     commonjs (0.2.7)
     concurrent-ruby (1.0.2)
     connection_pool (2.2.0)
     debug_inspector (0.0.2)
-    erb2haml (0.1.5)
-      html2haml
+    docile (1.1.5)
     erubis (2.7.0)
     execjs (2.7.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
       tilt
-    html2haml (2.0.0)
-      erubis (~> 2.7.0)
-      haml (~> 4.0.0)
-      nokogiri (~> 1.6.0)
-      ruby_parser (~> 3.5)
     i18n (0.7.0)
     jbuilder (2.5.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -121,7 +116,6 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
-    mysql2 (0.4.4)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
@@ -131,6 +125,7 @@ GEM
       pkg-config (~> 1.1.7)
     parser (2.3.1.2)
       ast (~> 2.2)
+    pg (0.18.4)
     pkg-config (1.1.7)
     powerpack (0.1.1)
     puma (3.4.0)
@@ -179,8 +174,6 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
-    ruby_parser (3.8.2)
-      sexp_processor (~> 4.1)
     sass (3.4.22)
     sass-rails (5.0.5)
       railties (>= 4.0.0, < 6)
@@ -191,7 +184,11 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    sexp_processor (4.7.0)
+    simplecov (0.12.0)
+      docile (~> 1.1.0)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     spring (1.7.2)
     sprockets (3.6.3)
       concurrent-ruby (~> 1.0)
@@ -232,31 +229,30 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  capistrano
-  capistrano-bundler
-  capistrano-puma
-  capistrano-rails
-  capistrano-rvm
-  coffee-rails
-  colorize
-  erb2haml
-  haml
+  capistrano (= 3.5.0)
+  capistrano-bundler (= 1.1.4)
+  capistrano-puma (= 0.2.3)
+  capistrano-rails (= 1.1.7)
+  capistrano-rvm (= 0.1.2)
+  codeclimate-test-reporter
+  coffee-rails (= 4.2.1)
+  haml (= 4.0.7)
   jbuilder (~> 2.0)
-  jquery-rails
-  less-rails
-  mysql2
-  puma
+  jquery-rails (= 4.1.1)
+  less-rails (= 2.7.1)
+  pg (= 0.18.4)
+  puma (= 3.4.0)
   rails (= 5.0.0)
-  react-rails
-  rubocop
-  sass-rails
+  react-rails (= 1.8.0)
+  rubocop (= 0.41.2)
+  sass-rails (= 5.0.5)
   sdoc (~> 0.4.0)
   spring
-  therubyracer
-  turbolinks
-  uglifier
+  therubyracer (= 0.12.2)
+  turbolinks (= 5.0.0)
+  uglifier (= 3.0.0)
   web-console (~> 2.0)
-  yui-compressor
+  yui-compressor (= 0.12.0)
 
 BUNDLED WITH
    1.12.5
