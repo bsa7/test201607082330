@@ -5,14 +5,13 @@ gem 'mysql2'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
-# gem 'jquery-rails'
-# gem 'turbolinks'
-# gem 'jbuilder', '~> 2.0'
-# gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'jquery-rails'
+gem 'turbolinks'
+gem 'jbuilder', '~> 2.0'
+gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'colorize'
 gem 'react-rails'
 gem 'haml'
-# gem 'sidekiq'
 gem 'less-rails'
 gem 'yui-compressor'
 gem 'therubyracer', platforms: :ruby
@@ -29,5 +28,3 @@ group :development do
   gem 'spring'
   gem 'web-console', '~> 2.0'
 end
-
-# gem 'russian'
