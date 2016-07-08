@@ -1,0 +1,23 @@
+## Customize the test machine
+machine:
+
+  timezone:
+    Asia/Yekaterinburg # Set the timezone
+
+  # Version of ruby to use
+  ruby:
+    version:
+      2.3.1
+
+  # Add some environment variables
+  environment:
+    CIRCLE_ENV: test
+    RAILS_ENV: test
+    DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
+
+## Customize deployment commands
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: test201607082330
