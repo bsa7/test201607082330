@@ -16,8 +16,8 @@ machine:
     DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
 
 ## Customize deployment commands
-deployment:
-  staging:
-    branch: master
-    heroku:
-      appname: test201607082330
+# deployment:
+#   staging:
+#     branch: master
+#     heroku:
+#       appname: test201607082330
