@@ -5,7 +5,7 @@ cache:
   bundler: true
 
 env:
-  - DB=mysql2 RAILS_ENV=test SH=bash CODECLIMATE_REPO_TOKEN=a265619f3d725720a06ff0811c06f6e2f0d772e5d0dd58193cc3993cd8a062d7 bundle exec rake
+  - DB=postgres RAILS_ENV=test SH=bash CODECLIMATE_REPO_TOKEN=a265619f3d725720a06ff0811c06f6e2f0d772e5d0dd58193cc3993cd8a062d7 bundle exec rake
 
 bundler_args: --without test --jobs 3 --retry 3
 before_install:
