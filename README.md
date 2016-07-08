@@ -24,8 +24,5 @@ http://www.gsmarena.com/apple_iphone_6s_plus-7243.php
 ## Code Status
 
 [![Build Status](https://travis-ci.org/r72cccp/test201607082330.svg?branch=master)](https://travis-ci.org/r72cccp/test201607082330)
-
 [![Code Climate](https://codeclimate.com/github/r72cccp/test201607082330.png)](https://codeclimate.com/github/r72cccp/test201607082330)
-
 [![Circle CI](https://circleci.com/gh/r72cccp/test201607082330.svg?style=svg)](https://circleci.com/gh/r72cccp/test201607082330/tree/master)
-
