@@ -1,0 +1,29 @@
+heroku:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true
+  database: 'database_name_heroku'
+  pool: 5
+  username: 'user_name'
+  password: 'password'
+  socket: /var/run/mysqld/mysqld.sock
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true
+  database: 'database_name_test'
+  pool: 5
+  username: 'user_name'
+  password: 'password'
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true
+  database: 'database_name_dev'
+  pool: 5
+  username: 'user_name'
+  password: 'password'
+  socket: /var/run/mysqld/mysqld.sock
