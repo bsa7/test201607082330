@@ -1,19 +1,34 @@
 ## Customize the test machine
 machine:
-
-  timezone:
-    Asia/Yekaterinburg # Set the timezone
+  # Add some environment variables
+  environment:
+    CIRCLE_ENV: test
+    DATABASE_URL: postgres://postgres@127.0.0.1:5433/test_database
+    RAILS_ENV: test
+#    DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
 
   # Version of ruby to use
   ruby:
     version:
       2.3.1
 
-  # Add some environment variables
-  environment:
-    CIRCLE_ENV: test
-    RAILS_ENV: test
-    DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
+  timezone:
+    Asia/Yekaterinburg # Set the timezone
+
+database:
+  override:
+    # This next line prevents Circle from automatically overwriting
+    # config/database.yml with one pointing at Postgres 9.4.
+    - true
+
+dependencies:
+  override:
+    # Just to be 100% certian you are using 9.5, and save a bit of memory.
+    - sudo service postgresql stop 9.4
+
+    # The 9.4 instance has been configured to work with Docker. Just
+    # copy that over to 9.5 and restart.
+    - sudo cp -v /etc/postgresql/9.{4,5}/main/pg_hba.conf && sudo service postgresql restart 9.5
 
 ## Customize deployment commands
 # deployment:
