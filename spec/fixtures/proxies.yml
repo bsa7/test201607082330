@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ip_port: MyString
+  success_attempts_count: 1
+  total_attempts_count: 1
+
+two:
+  ip_port: MyString
+  success_attempts_count: 1
+  total_attempts_count: 1

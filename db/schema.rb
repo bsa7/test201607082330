@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160709044932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "proxies", force: :cascade do |t|
+    t.string   "ip_port"
+    t.integer  "success_attempts_count"
+    t.integer  "total_attempts_count"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["success_attempts_count"], name: "index_proxies_on_success_attempts_count", using: :btree
+    t.index ["total_attempts_count"], name: "index_proxies_on_total_attempts_count", using: :btree
+  end
 
 end
