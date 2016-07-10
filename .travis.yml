@@ -1,18 +1,27 @@
 language: ruby
-sudo: false
-
-cache:
-  bundler: true
-
-env:
-  - DB=postgres RAILS_ENV=test SH=bash CODECLIMATE_REPO_TOKEN=a265619f3d725720a06ff0811c06f6e2f0d772e5d0dd58193cc3993cd8a062d7 bundle exec rake
-
-bundler_args: --without test --jobs 3 --retry 3
-before_install:
-  - "rm ${BUNDLE_GEMFILE}.lock"
-
-before_script:
-  - bundle
-
 rvm:
   - 2.3.1
+sudo: required
+language: ruby
+env:
+  - DB=postgresql DATABASE_URL="postgresql://travis@localhost/test201607082330_test"
+before_script:
+  - sudo /etc/init.d/postgresql stop
+  - sudo apt-get -y remove --purge postgresql-9.1 postgresql-9.2 postgresql-9.3 postgresql-9.4
+  - sudo apt-get -y autoremove
+  - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7FCC7D46ACCC4CF8
+  - sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main 9.5" >> /etc/apt/sources.list.d/postgresql.list'
+  - sudo apt-get update
+  - sudo apt-get -y install postgresql-9.5
+  - sudo sh -c 'echo "host all all 127.0.0.1/32 trust" > /etc/postgresql/9.5/main/pg_hba.conf'
+  - sudo sh -c 'echo "hostnossl all all 127.0.0.1/32 trust" >> /etc/postgresql/9.5/main/pg_hba.conf'
+  - sudo sh -c 'echo "hostnossl all all 0.0.0.0/0 trust" >> /etc/postgresql/9.5/main/pg_hba.conf'
+  - sudo sh -c 'echo "hostnossl all travis 127.0.0.1/32 trust" >> /etc/postgresql/9.5/main/pg_hba.conf'
+  - sudo sh -c 'echo "hostnossl all travis 0.0.0.0/0 trust" >> /etc/postgresql/9.5/main/pg_hba.conf'
+  - sudo sh -c 'echo "local all postgres trust" >> /etc/postgresql/9.5/main/pg_hba.conf'
+  - sudo sh -c 'echo "local all travis trust" >> /etc/postgresql/9.5/main/pg_hba.conf'
+  - sudo /etc/init.d/postgresql restart
+  - psql --version
+  - createuser --echo -U postgres --createdb travis
+  - createdb --echo -U postgres --owner "travis" test201607082330_test
+before_install: gem install bundler -v 1.11.2
