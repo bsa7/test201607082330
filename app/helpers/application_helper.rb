@@ -5,15 +5,11 @@ module ApplicationHelper
   end
 
   def cache_file_has_expired?(cache_file_name, expire_time = 24.hours)
-    has_expired = false
     unless File.exist?(cache_file_name)
-      has_expired = true
+      true
     else
-      if Time.now - File.ctime(cache_file_name) > expire_time
-        has_expired = true
-      end
+      Time.now - File.ctime(cache_file_name) > expire_time
     end
-    has_expired
   end
 
   def page_load(url, proxy_list = [], expire_time = 24.hours)

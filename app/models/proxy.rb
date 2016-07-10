@@ -23,19 +23,13 @@ class Proxy < ApplicationRecord
 
   def self.update_proxy_list
     proxy_list = load_new_proxies.uniq - Proxy.all.pluck(:ip_port)
-    new_proxies = proxy_list.map { |ip_port| "('#{ip_port}', 0, 0, '#{Time.now}', '#{Time.now}')" }
-    if new_proxies.length > 0
-      sql_str = <<-SQL
-        INSERT INTO proxies (
-          ip_port,
-          success_attempts_count,
-          total_attempts_count,
-          updated_at,
-          created_at
-        )
+    if proxy_list.length > 0
+      new_proxies = proxy_list.map { |ip_port| "('#{ip_port}', 0, 0, '#{Time.now}', '#{Time.now}')" }
+      column_list = %w(ip_port success_attempts_count total_attempts_count updated_at created_at)
+      ActiveRecord::Base.connection.execute <<-SQL
+        INSERT INTO proxies (#{column_list.join(', ')})
         VALUES #{new_proxies.join(", ")}
       SQL
-      ActiveRecord::Base.connection.execute(sql_str)
     else
       []
     end
