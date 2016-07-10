@@ -1,3 +1,4 @@
+# 20160709044932_create_proxies
 class CreateProxies < ActiveRecord::Migration[5.0]
   def change
     create_table :proxies do |t|

@@ -24,6 +24,8 @@ http://www.gsmarena.com/apple_iphone_6s_plus-7243.php
 ## Code Status (master branch)
 
 [![Build Status](https://travis-ci.org/r72cccp/test201607082330.svg?branch=master)](https://travis-ci.org/r72cccp/test201607082330)
-[![Code Climate](https://codeclimate.com/github/r72cccp/test201607082330.png)](https://codeclimate.com/github/r72cccp/test201607082330)
+[![Code Climate](https://codeclimate.com/github/r72cccp/test201607082330/badges/gpa.svg)](https://codeclimate.com/github/r72cccp/test201607082330)
+[![Test Coverage](https://codeclimate.com/github/r72cccp/test201607082330/badges/coverage.svg)](https://codeclimate.com/github/r72cccp/test201607082330/coverage)
+[![Issue Count](https://codeclimate.com/github/r72cccp/test201607082330/badges/issue_count.svg)](https://codeclimate.com/github/r72cccp/test201607082330)
 [![CircleCI](https://circleci.com/gh/r72cccp/test201607082330.svg?style=svg)](https://circleci.com/gh/r72cccp/test201607082330)
 [![codebeat badge](https://codebeat.co/badges/371ccf89-7f44-493d-bb74-185ee6fa2f20)](https://codebeat.co/projects/github-com-r72cccp-test201607082330)

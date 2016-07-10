@@ -3,7 +3,7 @@ RSpec.describe ApplicationHelper, type: :helper do
   describe '#cache_file_has_expired?' do
     it 'check if files are expired as a cache' do
       file_names = [
-        "file_not_exist",
+        'file_not_exist',
         "#{Rails.root}/log/test.log"
       ]
       expire_test_results = file_names.map { |file_name| helper.cache_file_has_expired?(file_name, 1.hours) }
@@ -22,7 +22,7 @@ RSpec.describe ApplicationHelper, type: :helper do
   describe '#page_loader' do
     it 'load page from url within proxy and return string value' do
       url = 'http://stackoverflow.com/'
-      expect(helper.page_load(url)).to match(/<title>Stack Overflow<\/title>/)
+      expect(helper.page_load(url)).to match('<title>Stack Overflow<\/title>')
     end
   end
 end
