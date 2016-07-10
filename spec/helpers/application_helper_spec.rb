@@ -4,11 +4,10 @@ RSpec.describe ApplicationHelper, type: :helper do
     it 'check if files are expired as a cache' do
       file_names = [
         "file_not_exist",
-        "#{Rails.root}/config.ru",
         "#{Rails.root}/log/test.log"
       ]
       expire_test_results = file_names.map { |file_name| helper.cache_file_has_expired?(file_name, 1.hours) }
-      expect(expire_test_results).to match([true, true, false])
+      expect(expire_test_results).to match([true, false])
     end
   end
 
