@@ -8,12 +8,7 @@ RSpec.describe ProxyHelper, type: :helper do
 
   describe '#parse_proxy_list_links' do
     it 'parse page for links to txt files' do
-      page = File.read("#{Rails.root}/db/cache/2bcfdf4eed02392e2e13554c2dfe3f91")
-      expect(helper.parse_proxy_list_links.slice(0, 3)).to match [
-        '/freeproxy/proxylist_at_05.07.2016.txt',
-        '/freeproxy/proxylist_at_30.06.2016.txt',
-        '/freeproxy/proxylist_at_21.06.2016.txt'
-      ]
+      expect([helper.parse_proxy_list_links.slice(1, 1)]).to match %r{\/freeproxy\/proxylist_at_\d\d\.\d\d.\d\d\d\d.txt}
     end
   end
 
