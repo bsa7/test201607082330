@@ -1,25 +1,53 @@
 language: ruby
 rvm:
   - 2.3.1
+# sudo: required
+# env:
+#   - DB=postgresql
+#   - RAILS_ENV=test SH=bash
+#   global:
+#     - PGPORT=5433
+#     - PGHOST=localhost
+#     - DATABASE_URL=postgres://localhost:5433/test201607082330_test
+# services:
+#   - postgresql
+# addons:
+#   apt:
+#     sources:
+#     - precise-pgdg-9.5
+#     packages:
+#     - postgresql-9.5
+#     - postgresql-contrib-9.5
+#   postgresql: 9.5
+# before_script:
+#   - sudo cp /etc/postgresql/9.4/main/pg_hba.conf /etc/postgresql/9.5/main/pg_hba.conf
+#   - sudo /etc/init.d/postgresql restart
+#   - psql -U postgres -c 'CREATE DATABASE test201607082330_test;'
 sudo: required
+language: ruby
 env:
-  - DB=postgresql
-  - RAILS_ENV=test SH=bash
-  global:
-    - PGPORT=5433
-    - PGHOST=localhost
-    - DATABASE_URL=postgres://localhost:5433/test201607082330_test
-services:
-  - postgresql
-addons:
-  apt:
-    sources:
-    - precise-pgdg-9.5
-    packages:
-    - postgresql-9.5
-    - postgresql-contrib-9.5
-  postgresql: 9.5
+  - DATABASE_URL="postgresql://travis@localhost/upsert_test"
+# rvm:
+#   - jruby-9.0.5.0
+#   - 2.3.0
 before_script:
-  - sudo cp /etc/postgresql/9.4/main/pg_hba.conf /etc/postgresql/9.5/main/pg_hba.conf
+  - sudo /etc/init.d/postgresql stop
+  - sudo apt-get -y remove --purge postgresql-9.1 postgresql-9.2 postgresql-9.3 postgresql-9.4
+  - sudo apt-get -y autoremove
+  - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7FCC7D46ACCC4CF8
+  - sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main 9.5" >> /etc/apt/sources.list.d/postgresql.list'
+  - sudo apt-get update
+  - sudo apt-get -y install postgresql-9.5
+  - sudo sh -c 'echo "host all all 127.0.0.1/32 trust" > /etc/postgresql/9.5/main/pg_hba.conf'
+  - sudo sh -c 'echo "hostnossl all all 127.0.0.1/32 trust" >> /etc/postgresql/9.5/main/pg_hba.conf'
+  - sudo sh -c 'echo "hostnossl all all 0.0.0.0/0 trust" >> /etc/postgresql/9.5/main/pg_hba.conf'
+  - sudo sh -c 'echo "hostnossl all travis 127.0.0.1/32 trust" >> /etc/postgresql/9.5/main/pg_hba.conf'
+  - sudo sh -c 'echo "hostnossl all travis 0.0.0.0/0 trust" >> /etc/postgresql/9.5/main/pg_hba.conf'
+  - sudo sh -c 'echo "local all postgres trust" >> /etc/postgresql/9.5/main/pg_hba.conf'
+  - sudo sh -c 'echo "local all travis trust" >> /etc/postgresql/9.5/main/pg_hba.conf'
   - sudo /etc/init.d/postgresql restart
-  - psql -U postgres -c 'CREATE DATABASE test201607082330_test;'
+  - psql --version
+  - createuser --echo -U postgres --createdb travis
+  - createdb --echo -U postgres --owner "travis" upsert_test
+
+before_install: gem install bundler -v 1.11.2
