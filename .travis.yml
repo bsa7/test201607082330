@@ -1,25 +1,21 @@
-branches:
-  only:
-    - develop
-
 language: ruby
 
 cache:
   bundler: true
 
 env:
-  - NODE_ENV=test PGPORT=5433 DB=postgres RAILS_ENV=test SH=bash CODECLIMATE_REPO_TOKEN=a265619f3d725720a06ff0811c06f6e2f0d772e5d0dd58193cc3993cd8a062d7
+  - NODE_ENV=test PGPORT=5433 PGHOST=localhost DB=postgres RAILS_ENV=test SH=bash CODECLIMATE_REPO_TOKEN=a265619f3d725720a06ff0811c06f6e2f0d772e5d0dd58193cc3993cd8a062d7
 
 bundler_args: --without test --jobs 3 --retry 3
+
 before_install:
   - "rm ${BUNDLE_GEMFILE}.lock"
-  - sudo /etc/init.d/postgresql stop
-  - wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-  - sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main 9.5" >> /etc/apt/sources.list.d/postgresql.list'
-  - sudo apt-get update
-  - sudo apt-get install postgresql-9.5
 
 before_script:
+  - sudo cp /etc/postgresql/9.4/main/pg_hba.conf /etc/postgresql/9.5/main/pg_hba.conf
+  - sudo /etc/init.d/postgresql restart
+  - psql -U postgres -c 'create database "travis-db-test";'
+  - psql -U postgres travis-db-test -c 'create extension "uuid-ossp";'
   - bundle
 
 rvm:

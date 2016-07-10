@@ -255,7 +255,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   coffee-rails (= 4.2.1)
   factory_girl_rails (= 4.7.0)
-  faker
+  faker (= 1.6.5)
   haml (= 4.0.7)
   jbuilder (~> 2.0)
   jquery-rails (= 4.1.1)
@@ -269,7 +269,7 @@ DEPENDENCIES
   rubocop (= 0.41.2)
   sass-rails (= 5.0.5)
   sdoc (~> 0.4.0)
-  spring
+  spring (= 1.7.2)
   spring-watcher-listen (~> 2.0.0)
   therubyracer (= 0.12.2)
   turbolinks (= 5.0.0)

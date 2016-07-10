@@ -20,7 +20,7 @@ group :development do
   gem 'byebug'
   gem 'listen', '~> 3.0.5'
   gem 'rubocop', '0.41.2', require: false
-  gem 'spring'
+  gem 'spring', '1.7.2'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '~> 2.0'
 end
@@ -29,6 +29,6 @@ group :test do
   gem 'capybara-webkit'
   gem 'codeclimate-test-reporter', require: nil
   gem 'factory_girl_rails', '4.7.0'
-  gem 'faker'
+  gem 'faker', '1.6.5'
   gem 'rspec-rails', '~> 3.4'
 end
