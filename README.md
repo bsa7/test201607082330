@@ -21,7 +21,7 @@ http://www.gsmarena.com/apple_iphone_6s_plus-7243.php
 
 Необходимо также предусмотреть возможность расширения системы в будущем (добавление новых сайтов для парсинга, например).
 
-## Code Status
+## Code Status (master branch)
 
 [![Build Status](https://travis-ci.org/r72cccp/test201607082330.svg?branch=master)](https://travis-ci.org/r72cccp/test201607082330)
 [![Code Climate](https://codeclimate.com/github/r72cccp/test201607082330.png)](https://codeclimate.com/github/r72cccp/test201607082330)
