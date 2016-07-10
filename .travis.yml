@@ -4,7 +4,7 @@ rvm:
 sudo: required
 language: ruby
 env:
-  - DB=postgresql DATABASE_URL="postgresql://travis@localhost/test201607082330_test"
+  - DB=postgresql DATABASE_URL="postgresql://travis@localhost/test201607082330_test" CODECLIMATE_REPO_TOKEN=a265619f3d725720a06ff0811c06f6e2f0d772e5d0dd58193cc3993cd8a062d7 bundle exec rake
 before_script:
   - sudo /etc/init.d/postgresql stop
   - sudo apt-get -y remove --purge postgresql-9.1 postgresql-9.2 postgresql-9.3 postgresql-9.4
