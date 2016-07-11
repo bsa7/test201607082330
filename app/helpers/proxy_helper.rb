@@ -11,7 +11,7 @@ module ProxyHelper
   end
 
   def parse_proxy_list_text(text)
-    text.scan(/^\d+\.\d+\.\d+\.\d+:\d+/)
+    text&.scan(/^\d+\.\d+\.\d+\.\d+:\d+/)
   end
 
   def load_new_proxies
