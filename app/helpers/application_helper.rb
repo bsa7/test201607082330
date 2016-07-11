@@ -59,7 +59,7 @@ module ApplicationHelper
   def download_within_proxy(options)
     options[:threads] << Thread.new do
       options[:contents] << download_with_timeout(options) do
-        Net::HTTP.get(URI(options[:url]))
+        clean_content(Net::HTTP.get(URI(options[:url])))
       end
     end
   end
