@@ -5,11 +5,11 @@ module ApplicationHelper
     Digest::MD5.hexdigest(url)
   end
 
-  def page_load(url, check_stamp = %r{<body}, thread_count = 24)
+  def page_load(options)
     result = nil
-    proxy_list = Proxy.get_list(thread_count)
+    options[:proxy_list] = Proxy.get_list(options[:thread_count] ||= 24)
     3.times do
-      result = download_page_with_proxy(url, proxy_list, thread_count, 1, check_stamp)
+      result = download_page_with_proxy(options)
       break if result
     end
     result
@@ -17,53 +17,47 @@ module ApplicationHelper
 
   private
 
-  def download_page_with_proxy(url, proxy_list = [], thread_count = 8, read_timeout = 2, check_stamp = %r{<body})
-    contents = Array.new(proxy_list.length, nil)
-    threads = []
-    if proxy_list.length < thread_count
-      download_within_proxy(url, contents, threads)
+  def download_page_with_proxy(options)
+    options[:contents] = Array.new(options[:proxy_list].length, nil)
+    options[:threads] = []
+    if options[:proxy_list].length < options[:thread_count]
+      download_within_proxy(options)
     else
-      download_parallel(url, proxy_list, check_stamp, read_timeout, contents, threads)
+      download_parallel(options)
     end
-    threads.each(&:join)
-    contents.reject(&:nil?).first
+    options[:threads].each(&:join)
+    options[:contents].reject(&:nil?).first
   end
 
-  def download_parallel(url, proxy_list, check_stamp, read_timeout, contents, threads)
-    proxy_list.each_with_index do |ip_port, index|
-      threads << Thread.new do
-        contents[index] = download_with_timeout(read_timeout) do
-          download_page(url, ip_port)
+  def download_parallel(options)
+    options[:proxy_list].each_with_index do |ip_port, index|
+      options[:threads] << Thread.new do
+        options[:contents][index] = download_with_timeout(options) do
+          download_page(options[:url], ip_port)
         end
-        if contents[index] !~ check_stamp
-          contents[index] = nil
-        end
+        options[:contents][index] = nil if options[:contents][index] !~ options[:check_stamp] ||= /<title/
       end
     end
   end
 
-  def download_within_proxy(url, contents, threads)
-    threads << Thread.new do
-      contents << download_with_timeout do
-        Net::HTTP.get(URI(url))
+  def download_within_proxy(options)
+    options[:threads] << Thread.new do
+      options[:contents] << download_with_timeout(options) do
+        Net::HTTP.get(URI(options[:url]))
       end
     end
   end
 
-  def download_with_timeout(read_timeout = 1, &block)
-    begin
-      Timeout.timeout(read_timeout) do
-        yield block
-      end
-    rescue
-      nil
-    end
+  def download_with_timeout(options, &block)
+    Timeout.timeout(options[:read_timeout] ||= 2) { yield block }
+  rescue
+    nil
   end
 
   def download_page(url, ip_port)
     uri = URI(url)
     proxy = URI.parse("http://#{ip_port}")
-    Net::HTTP.new(uri, nil, proxy.host, proxy.port).start do |http|
+    Net::HTTP.new(uri, nil, proxy.host, proxy.port).start do
       clean_content(Net::HTTP.get(uri))
     end
   end
@@ -82,7 +76,7 @@ module ApplicationHelper
       end
       content = cleaned
     rescue EncodingError
-      content = str.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').encode("utf-8")
+      content = str.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').encode('utf-8')
     end
     content
   end

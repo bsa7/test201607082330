@@ -24,11 +24,10 @@ class Proxy < ApplicationRecord
     count = Proxy.count(:id)
     percent = length / count.to_f * 100
     if percent < 1
-      sql_str = "SELECT id, ip_port FROM proxies TABLESAMPLE BERNOULLI(#{percent}) LIMIT #{length}"
+      read_list("SELECT id, ip_port FROM proxies TABLESAMPLE BERNOULLI(#{percent}) LIMIT #{length}", length)
     else
-      sql_str = "SELECT id, ip_port FROM proxies ORDER BY RANDOM() LIMIT #{length}"
+      read_list("SELECT id, ip_port FROM proxies ORDER BY RANDOM() LIMIT #{length}", length)
     end
-    self.read_list(sql_str, length)
   end
 
   def self.update
@@ -46,7 +45,6 @@ class Proxy < ApplicationRecord
         result += connection.execute(sql_str).as_json.map { |record| record['ip_port'] }
         result.uniq!
         break if result.length >= length
-        Rails.logger.ap result: result
       end
     end
     result[0..length - 1]

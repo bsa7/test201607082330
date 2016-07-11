@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Proxy, type: :model do
   describe '.get_list' do
     it 'should update list of proxies id proxies not found and return sample' do
-      proxy = FactoryGirl.create(:proxy)
+      FactoryGirl.create(:proxy)
       Rails.logger.ap proxy: Proxy.first
       expect(Proxy.get_list(1).length).to match(1)
     end
