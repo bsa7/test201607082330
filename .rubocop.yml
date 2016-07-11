@@ -5,5 +5,7 @@ AllCops:
     - config/puma.rb
 LineLength:
   Max: 120
+Metrics/MethodLength:
+  Max: 10
 Style/FrozenStringLiteralComment:
   Enabled: false

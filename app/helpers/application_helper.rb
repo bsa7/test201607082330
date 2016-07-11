@@ -1,32 +1,99 @@
-require 'open-uri'
+require 'net/http'
 # Application Helper
 module ApplicationHelper
   def url_to_filename(url)
     Digest::MD5.hexdigest(url)
   end
 
-  def cache_file_has_expired?(cache_file_name, expire_time = 24.hours)
-    if !File.exist?(cache_file_name)
-      true
+  def cache_file_has_expired?(options)
+    has_expired = false
+    options[:cache_file_name] = "#{Rails.root}/tmp/cache/#{url_to_filename(options[:url])}"
+    if File.exist?(options[:cache_file_name])
+      if Time.now - File.ctime(options[:cache_file_name]) > options[:expire_time] ||= 24.hours
+        has_expired = true
+      end
     else
-      Time.now - File.ctime(cache_file_name) > expire_time
+      has_expired = true
+    end
+    has_expired
+  end
+
+  def page_load(options)
+    if options[:cache_enabled] && !cache_file_has_expired?(options)
+      result = File.read(options[:cache_file_name])
+    else
+      options[:proxy_list] = Proxy.get_list(options[:thread_count] ||= 24)
+      result = download_page_with_proxy(options)
+      if result && options[:cache_enabled]
+        file_write(options[:cache_file_name], result)
+      end
+    end
+    result
+  end
+
+  private
+
+  def download_page_with_proxy(options)
+    options[:contents] = Array.new(options[:proxy_list].length, nil)
+    options[:threads] = []
+    if options[:proxy_list].length < options[:thread_count]
+      download_within_proxy(options)
+    else
+      download_parallel(options)
+    end
+    options[:threads].each(&:join)
+    options[:contents].reject(&:nil?).first
+  end
+
+  def download_parallel(options)
+    options[:proxy_list].each_with_index do |ip_port, index|
+      options[:threads] << Thread.new do
+        options[:contents][index] = download_with_timeout(options) do
+          download_page(options[:url], ip_port)
+        end
+        options[:contents][index] = nil if options[:contents][index] !~ options[:check_stamp] ||= /<title/
+      end
+    end
+  end
+
+  def download_within_proxy(options)
+    options[:threads] << Thread.new do
+      options[:contents] << download_with_timeout(options) do
+        clean_content(Net::HTTP.get(URI(options[:url])))
+      end
+    end
+  end
+
+  def download_with_timeout(options, &block)
+    Timeout.timeout(options[:read_timeout] ||= 2) { yield block }
+  rescue
+    nil
+  end
+
+  def download_page(url, ip_port)
+    uri = URI(url)
+    proxy = URI.parse("http://#{ip_port}")
+    Net::HTTP.new(uri, nil, proxy.host, proxy.port).start do
+      clean_content(Net::HTTP.get(uri))
     end
   end
 
   def file_write(file_name, file_content)
-    File.open("#{Rails.root}/db/cache/#{file_name}", 'w') do |file|
+    FileUtils.mkdir_p(file_name.gsub(%r{\/[^\/]+\z}, ''))
+    File.open(file_name, 'w') do |file|
       file.write(file_content)
     end
   end
 
-  def page_load(url, expire_time = 24.hours)
-    cache_file_name = url_to_filename(url)
-    if cache_file_has_expired?(cache_file_name, expire_time)
-      file_content = URI(url).read
-      file_write(cache_file_name, file_content)
-    else
-      file_content = File.read(cache_file_name)
+  def clean_content(str)
+    begin
+      cleaned = str.dup.force_encoding('UTF-8')
+      unless cleaned.valid_encoding?
+        cleaned = str.encode('UTF-8', 'Windows-1251')
+      end
+    rescue EncodingError
+      str.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').encode('utf-8')
     end
-    file_content
+    cleaned
   end
 end

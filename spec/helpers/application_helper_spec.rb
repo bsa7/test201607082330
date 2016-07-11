@@ -1,16 +1,5 @@
 require 'rails_helper'
 RSpec.describe ApplicationHelper, type: :helper do
-  describe '#cache_file_has_expired?' do
-    it 'check if files are expired as a cache' do
-      file_names = [
-        'file_not_exist',
-        "#{Rails.root}/log/test.log"
-      ]
-      expire_test_results = file_names.map { |file_name| helper.cache_file_has_expired?(file_name, 1.hours) }
-      expect(expire_test_results).to match([true, false])
-    end
-  end
-
   describe '#url_to_filename' do
     it 'given url and convert it to a filename' do
       url = 'http://webanetlabs.net/publ/24/freeproxy/proxylist_at_21.06.2016.txt'
@@ -19,10 +8,11 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
-  describe '#page_loader' do
-    it 'load page from url within proxy and return string value' do
-      url = 'http://stackoverflow.com/'
-      expect(helper.page_load(url)).to match('<title>Stack Overflow<\/title>')
+  describe '#page_load' do
+    it 'load page from url and return string value' do
+      url = 'http://stackoverflow.com'
+      matcher = %r{<title>Stack Overflow<\/title>}
+      expect(helper.page_load(url: url, check_stamp: matcher)).to match(matcher)
     end
   end
 end
