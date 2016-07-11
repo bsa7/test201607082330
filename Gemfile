@@ -32,3 +32,7 @@ group :test do
   gem 'faker', '1.6.5'
   gem 'rspec-rails', '~> 3.4'
 end
+
+group :development, :test do
+  gem 'awesome_print', '1.7.0'
+end
