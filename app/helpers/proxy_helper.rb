@@ -3,7 +3,7 @@ include ApplicationHelper
 module ProxyHelper
   def load_proxy_index
     url = 'http://webanetlabs.net/publ/24'
-    page_load(url, /<title/)
+    page_load(url: url, check_stamp: /<title/, cache_enabled: true)
   end
 
   def parse_proxy_list_links
@@ -17,7 +17,7 @@ module ProxyHelper
   def load_new_proxies
     proxies = parse_proxy_list_links.map do |file_link|
       url = "http://webanetlabs.net#{file_link}"
-      parse_proxy_list_text(page_load(url))
+      parse_proxy_list_text(page_load(url: url))
     end
     proxies.flatten
   end

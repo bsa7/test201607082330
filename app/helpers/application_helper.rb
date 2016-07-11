@@ -5,12 +5,28 @@ module ApplicationHelper
     Digest::MD5.hexdigest(url)
   end
 
+  def cache_file_has_expired?(options)
+    has_expired = false
+    options[:cache_file_name] = "#{Rails.root}/tmp/cache/#{url_to_filename(options[:url])}"
+    if File.exist?(options[:cache_file_name])
+      if Time.now - File.ctime(options[:cache_file_name]) > options[:expire_time] ||= 24.hours
+        has_expired = true
+      end
+    else
+      has_expired = true
+    end
+    has_expired
+  end
+
   def page_load(options)
-    result = nil
-    options[:proxy_list] = Proxy.get_list(options[:thread_count] ||= 24)
-    3.times do
+    if options[:cache_enabled] && !cache_file_has_expired?(options)
+      result = File.read(options[:cache_file_name])
+    else
+      options[:proxy_list] = Proxy.get_list(options[:thread_count] ||= 24)
       result = download_page_with_proxy(options)
-      break if result
+      if result && options[:cache_enabled]
+        file_write(options[:cache_file_name], result)
+      end
     end
     result
   end
@@ -63,7 +79,8 @@ module ApplicationHelper
   end
 
   def file_write(file_name, file_content)
-    File.open("#{Rails.root}/db/cache/#{file_name}", 'w') do |file|
+    FileUtils.mkdir_p(file_name.gsub(%r{\/[^\/]+\z}, ''))
+    File.open(file_name, 'w') do |file|
       file.write(file_content)
     end
   end
@@ -74,10 +91,9 @@ module ApplicationHelper
       unless cleaned.valid_encoding?
         cleaned = str.encode('UTF-8', 'Windows-1251')
       end
-      content = cleaned
     rescue EncodingError
-      content = str.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').encode('utf-8')
+      str.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').encode('utf-8')
     end
-    content
+    cleaned
   end
 end
