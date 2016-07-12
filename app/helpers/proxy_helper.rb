@@ -3,7 +3,7 @@ include ApplicationHelper
 module ProxyHelper
   def load_proxy_index
     url = 'http://webanetlabs.net/publ/24'
-    page_load(url: url, check_stamp: /<title/, cache_enabled: true)
+    page_load(url: url, check_stamp: /webanet\.ucoz\.ru/, cache_enabled: true)
   end
 
   def parse_proxy_list_links

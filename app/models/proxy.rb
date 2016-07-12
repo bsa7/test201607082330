@@ -5,9 +5,9 @@ class Proxy < ApplicationRecord
     count = Proxy.count(:id)
     percent = length / count.to_f * 100
     if percent < 1
-      read_list("SELECT id, ip_port FROM proxies TABLESAMPLE BERNOULLI(#{percent}) LIMIT #{length}", length)
+      read_list("SELECT id, ip_port FROM proxies TABLESAMPLE BERNOULLI(#{[percent * 2, 100].min}) LIMIT #{length}")
     else
-      read_list("SELECT id, ip_port FROM proxies ORDER BY RANDOM() LIMIT #{length}", length)
+      read_list("SELECT id, ip_port FROM proxies ORDER BY RANDOM() LIMIT #{length}")
     end
   end
 
@@ -38,14 +38,14 @@ class Proxy < ApplicationRecord
 
   private_class_method
 
-  def self.read_list(sql_str, length)
+  def self.read_list(sql_str)
     result = []
     ActiveRecord::Base.connection_pool.with_connection do |connection|
       records = connection.execute(sql_str).as_json
       result = records.map { |record| record['ip_port'] }
       result.uniq!
     end
-    result[0..length - 1]
+    result
   end
 
   def self.add_list(proxy_list)

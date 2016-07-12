@@ -23,8 +23,8 @@ module ApplicationHelper
       result = File.read(options[:cache_file_name])
     else
       options[:proxy_list] = Proxy.get_list(options[:thread_count] ||= 24)
-      result = download_page_with_proxy(options.merge(threads: []))
-      if result && options[:cache_enabled]
+      result = download_page_with_proxy(options)
+      if result.present? && options[:cache_enabled]
         file_write(options[:cache_file_name], result)
       end
     end
@@ -43,24 +43,24 @@ module ApplicationHelper
 
   def download_parallel(options)
     options[:proxy_list].each_with_index do |ip_port, index|
-      options[:threads] << Thread.new do
-        options[:contents][index] = download_with_timeout(options) { download_page(options[:url], ip_port) }
+      (options[:threads] ||= []) << Thread.new do
+        options[:contents][index] = achieve(options) { download_page(options[:url], ip_port) }
         options[:contents][index] = nil if options[:contents][index] !~ options[:check_stamp] ||= /<title/
       end
     end
   end
 
   def download_within_proxy(options)
-    options[:threads] << Thread.new do
-      options[:contents] << download_with_timeout(options) do
+    (options[:threads] ||= []) << Thread.new do
+      options[:contents] << achieve(options) do
         uri = URI(options[:url])
         encode_to_utf8(Net::HTTP.get(uri))
       end
     end
   end
 
-  def download_with_timeout(options, &block)
-    Timeout.timeout(options[:read_timeout] ||= 2) { yield block }
+  def achieve(options = {}, &block)
+    Timeout.timeout(options[:read_timeout] ||= 4) { yield block }
   rescue
     nil
   end
@@ -68,8 +68,8 @@ module ApplicationHelper
   def download_page(url, ip_port)
     uri = URI(url)
     proxy = URI.parse("http://#{ip_port}")
-    Net::HTTP.new(uri, nil, proxy.host, proxy.port).start do
-      encode_to_utf8(Net::HTTP.get(uri))
+    Net::HTTP.new(uri.host, nil, proxy.host, proxy.port).start do |http|
+      encode_to_utf8(http.request(Net::HTTP::Get.new(uri.path)).body)
     end
   end
 
