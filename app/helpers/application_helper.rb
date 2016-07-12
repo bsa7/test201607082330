@@ -55,7 +55,8 @@ module ApplicationHelper
   def download_within_proxy(options)
     options[:threads] << Thread.new do
       options[:contents] << download_with_timeout(options) do
-        clean_content(Net::HTTP.get(URI(options[:url])))
+        uri = URI(options[:url])
+        encode_to_utf8(Net::HTTP.get(uri))
       end
     end
   end
@@ -70,7 +71,7 @@ module ApplicationHelper
     uri = URI(url)
     proxy = URI.parse("http://#{ip_port}")
     Net::HTTP.new(uri, nil, proxy.host, proxy.port).start do
-      clean_content(Net::HTTP.get(uri))
+      encode_to_utf8(Net::HTTP.get(uri))
     end
   end
 
@@ -81,7 +82,7 @@ module ApplicationHelper
     end
   end
 
-  def clean_content(str)
+  def encode_to_utf8(str)
     cleaned = str.dup.force_encoding('UTF-8')
     cleaned.valid_encoding? ? cleaned : str.encode('UTF-8', 'Windows-1251')
   rescue EncodingError
