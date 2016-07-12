@@ -44,9 +44,7 @@ module ApplicationHelper
   def download_parallel(options)
     options[:proxy_list].each_with_index do |ip_port, index|
       options[:threads] << Thread.new do
-        options[:contents][index] = download_with_timeout(options) do
-          download_page(options[:url], ip_port)
-        end
+        options[:contents][index] = download_with_timeout(options) { download_page(options[:url], ip_port) }
         options[:contents][index] = nil if options[:contents][index] !~ options[:check_stamp] ||= /<title/
       end
     end

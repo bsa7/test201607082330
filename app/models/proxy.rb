@@ -22,11 +22,10 @@ class Proxy < ApplicationRecord
   end
 
   def self.mark_all(options)
-    if options[:proxy_list].length == options[:contents].length
-      ActiveRecord::Base.transaction do
-        options[:contents].each_with_index do |content, index|
-          Proxy.mark_as(ip_port: options[:proxy_list][index], state: content ? :good : :bad)
-        end
+    return unless options[:proxy_list].length == options[:contents].length
+    ActiveRecord::Base.transaction do
+      options[:contents].each_with_index do |content, index|
+        Proxy.mark_as(ip_port: options[:proxy_list][index], state: content ? :good : :bad)
       end
     end
   end
