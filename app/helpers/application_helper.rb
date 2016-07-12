@@ -9,7 +9,7 @@ module ApplicationHelper
     has_expired = false
     options[:cache_file_name] = "#{Rails.root}/tmp/cache/#{url_to_filename(options[:url])}"
     if File.exist?(options[:cache_file_name])
-      if Time.now - File.ctime(options[:cache_file_name]) > options[:expire_time] ||= 24.hours
+      if Time.now.getlocal - File.ctime(options[:cache_file_name]) > options[:expire_time] ||= 24.hours
         has_expired = true
       end
     else
@@ -23,7 +23,7 @@ module ApplicationHelper
       result = File.read(options[:cache_file_name])
     else
       options[:proxy_list] = Proxy.get_list(options[:thread_count] ||= 24)
-      result = download_page_with_proxy(options)
+      result = download_page_with_proxy(options.merge(threads: []))
       if result && options[:cache_enabled]
         file_write(options[:cache_file_name], result)
       end
@@ -35,13 +35,9 @@ module ApplicationHelper
 
   def download_page_with_proxy(options)
     options[:contents] = Array.new(options[:proxy_list].length, nil)
-    options[:threads] = []
-    if options[:proxy_list].length < options[:thread_count]
-      download_within_proxy(options)
-    else
-      download_parallel(options)
-    end
+    options[:proxy_list].empty? ? download_within_proxy(options) : download_parallel(options)
     options[:threads].each(&:join)
+    Proxy.mark_all(options)
     options[:contents].reject(&:nil?).first
   end
 
@@ -86,14 +82,9 @@ module ApplicationHelper
   end
 
   def clean_content(str)
-    begin
-      cleaned = str.dup.force_encoding('UTF-8')
-      unless cleaned.valid_encoding?
-        cleaned = str.encode('UTF-8', 'Windows-1251')
-      end
-    rescue EncodingError
-      str.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').encode('utf-8')
-    end
-    cleaned
+    cleaned = str.dup.force_encoding('UTF-8')
+    cleaned.valid_encoding? ? cleaned : str.encode('UTF-8', 'Windows-1251')
+  rescue EncodingError
+    str.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').encode('utf-8')
   end
 end

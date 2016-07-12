@@ -1,25 +1,6 @@
 include ProxyHelper
 # Proxy model
 class Proxy < ApplicationRecord
-  def self.mark_proxy_as_good(ip_port)
-    proxy = Proxy.find_by_ip_port(ip_port)
-    if proxy
-      proxy.success_attempts_count += 1
-      proxy.total_attempts_count += 1
-      proxy.save
-    end
-    proxy.total_attempts_count
-  end
-
-  def self.mark_proxy_as_bad(ip_port)
-    proxy = Proxy.find_by_ip_port(ip_port)
-    if proxy
-      proxy.total_attempts_count += 1
-      proxy.save
-    end
-    proxy.total_attempts_count
-  end
-
   def self.get_list(length)
     count = Proxy.count(:id)
     percent = length / count.to_f * 100
@@ -27,6 +8,26 @@ class Proxy < ApplicationRecord
       read_list("SELECT id, ip_port FROM proxies TABLESAMPLE BERNOULLI(#{percent}) LIMIT #{length}", length)
     else
       read_list("SELECT id, ip_port FROM proxies ORDER BY RANDOM() LIMIT #{length}", length)
+    end
+  end
+
+  def self.mark_as(options)
+    proxy = Proxy.find_by_ip_port(options[:ip_port])
+    if proxy
+      proxy.success_attempts_count += 1 if options[:state] == :good
+      proxy.total_attempts_count += 1
+      proxy.save
+    end
+    proxy.total_attempts_count
+  end
+
+  def self.mark_all(options)
+    if options[:proxy_list].length == options[:contents].length
+      ActiveRecord::Base.transaction do
+        options[:contents].each_with_index do |content, index|
+          Proxy.mark_as(ip_port: options[:proxy_list][index], state: content ? :good : :bad)
+        end
+      end
     end
   end
 
@@ -41,17 +42,15 @@ class Proxy < ApplicationRecord
   def self.read_list(sql_str, length)
     result = []
     ActiveRecord::Base.connection_pool.with_connection do |connection|
-      3.times do
-        result += connection.execute(sql_str).as_json.map { |record| record['ip_port'] }
-        result.uniq!
-        break if result.length >= length
-      end
+      records = connection.execute(sql_str).as_json
+      result = records.map { |record| record['ip_port'] }
+      result.uniq!
     end
     result[0..length - 1]
   end
 
   def self.add_list(proxy_list)
-    proxies = proxy_list.map { |ip_port| "('#{ip_port}', 0, 0, '#{Time.now}', '#{Time.now}')" }
+    proxies = proxy_list.map { |ip_port| "('#{ip_port}', 0, 0, '#{Time.current}', '#{Time.current}')" }
     columns = %w(ip_port success_attempts_count total_attempts_count updated_at created_at)
     ActiveRecord::Base.connection_pool.with_connection do |connection|
       connection.execute "INSERT INTO proxies (#{columns.join(',')}) VALUES #{proxies.join(',')}"
