@@ -7,7 +7,7 @@ RSpec.describe BrandsController, type: :controller do
     it 'has a 200 status code' do
       get :index
       expect(response.status).to eq(200)
-      expect(response.body).to match('<a href=\"samsung-phones-9.php\">Samsung</a>')
+      expect(response.body).to match(/mdl-layout__content/)
     end
   end
 

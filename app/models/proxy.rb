@@ -2,10 +2,10 @@ include ProxyHelper
 # Proxy model
 class Proxy < ApplicationRecord
   def self.get_list(length)
-    count = Proxy.count(:id)
+    count = Proxy.count_of_records
     percent = length / count.to_f * 100
-    if percent < 1
-      read_list("SELECT id, ip_port FROM proxies TABLESAMPLE BERNOULLI(#{[percent * 2, 100].min}) LIMIT #{length}")
+    if percent < 10
+      read_list("SELECT id, ip_port FROM proxies TABLESAMPLE BERNOULLI(#{[percent * 4, 100].min}) LIMIT #{length}")
     else
       read_list("SELECT id, ip_port FROM proxies ORDER BY RANDOM() LIMIT #{length}")
     end
@@ -21,15 +21,6 @@ class Proxy < ApplicationRecord
     proxy.total_attempts_count
   end
 
-  def self.mark_all(options)
-    return unless options[:proxy_list].length == options[:contents].length
-    ActiveRecord::Base.transaction do
-      options[:contents].each_with_index do |content, index|
-        Proxy.mark_as(ip_port: options[:proxy_list][index], state: content ? :good : :bad)
-      end
-    end
-  end
-
   def self.update
     proxy_list = load_new_proxies.uniq - Proxy.all.pluck(:ip_port)
     Proxy.add_list(proxy_list) if proxy_list.present?
@@ -37,6 +28,14 @@ class Proxy < ApplicationRecord
   end
 
   private_class_method
+
+  def self.count_of_records
+    count = nil
+    ActiveRecord::Base.connection_pool.with_connection do
+      count = Proxy.count(:id)
+    end
+    count
+  end
 
   def self.read_list(sql_str)
     result = []
