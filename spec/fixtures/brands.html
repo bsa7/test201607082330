@@ -1,0 +1,973 @@
+<br />
+<b>Warning</b>:  mysqli_error() expects exactly 1 parameter, 0 given in <b>/hosting/gsmarena/www-55/_quickban.php3</b> on line <b>85</b><br />
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<head>
+<title>GSMArena.com - GSM phone reviews, news, opinions, votes, manuals and more...</title>
+<link rel="stylesheet" href="http://st.gsmarena.com/vv/assets8/css/gsmarena.css?v=3">
+<!--[if lt IE 9]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<![endif]-->
+
+
+
+
+<link rel="stylesheet" href="http://st.gsmarena.com/vv/assets8/css/index.css">
+
+<meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<meta name="description" content="GSMArena.com - The ultimate resource for GSM handset information" />
+<meta name="keywords" content="GSM,mobile,phone,Nokia,Sony Ericsson,Apple,iPhone,Siemens,Motorola,Alcatel,Panasonic,Samsung,cellphone,specifications,information,info,opinion,review,pictures,photos" />
+<link rel="alternate" type="application/rss+xml" title="GSMArena.com RSS feed" href="http://www.gsmarena.com/rss-news-reviews.php3" />
+<link rel="shortcut icon" href="i/favicon.ico" />
+</head>
+<body>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="http://st.gsmarena.com/vv/assets8/js/misc.js?v=2"></script>
+<script type="text/javascript" src="http://st.gsmarena.com/vv/assets8/js/autocomplete.js?ver=3"></script>
+<script type="text/javascript" language="javascript">
+AUTOCOMPLETE_LIST_URL = "/quicksearch-8089.jpg";
+$gsm.addEventListener(document, "DOMContentLoaded", function() 
+{
+    new Autocomplete( "topsearch-text", "topsearch", true );
+}
+)
+</script>
+<script language='JavaScript' type='text/javascript'>
+function phpads_deliverActiveX(content)
+{
+	document.write(content);	
+}
+</script>
+<header id="header" class="row">
+<div class="wrapper clearfix">
+<div class="top-bar clearfix">
+<!-- HAMBURGER MENU -->
+<button type="button" role="button" aria-label="Toggle Navigation" class="lines-button minus focused">
+<span class="lines"></span>
+</button>
+<!-- /HAMBURGER MENU -->
+
+
+
+<!-- LOGO -->
+<div id="logo">
+<a href="/">
+
+<object type="image/svg+xml" data="http://st.gsmarena.com/vv/assets8/i/logo.svg"><img src="http://st.gsmarena.com/vv/assets8/i/logo-fallback.gif" alt="GSMArena.com"></object>
+<span>GSMArena.com</span></a>
+</div>
+
+
+
+<div id="nav" role="main">
+<form action="results.php3" method="get" id="topsearch">
+    <input type="hidden" name="sQuickSearch" value="yes">
+    <input type="text" placeholder="Search" tabindex="201" accesskey="s" id="topsearch-text" name="sName" autocomplete="off" />
+    <span id="quick-search-button">
+      <input type="submit" value="Go" />
+      <i class="head-icon icomoon-liga icon-search-left"></i>
+    </span>
+    
+
+</form>
+</div>
+
+
+<div id="social-connect">
+<a href="tipus.php3" class="tip-icon">
+  <i class="head-icon icon-tip-us icomoon-liga"></i><br><span class="icon-count">Tip us</span>
+</a>
+<a href="https://www.facebook.com/GSMArenacom-189627474421/" class="fb-icon" target="_blank">
+  <i class="head-icon icon-soc-fb2 icomoon-liga"></i><br><span class="icon-count">848k</span>
+</a>
+<a href="http://twitter.com/gsmarena_com" class="tw-icon" target="_blank">
+  <i class="head-icon icon-soc-twitter2 icomoon-liga"></i><br><span class="icon-count">113k</span>
+</a>
+
+<a href="https://plus.google.com/116083888509266864115?prsrc=3" class="gp-icon" target="_blank">
+  <i class="head-icon icon-soc-gplus icomoon-liga"></i>
+  <span class="icon-count">86k</span>
+</a>
+<a href="http://youtube.com/user/gsmarena07" class="yt-icon" target="_blank">
+  <i class="head-icon icon-soc-youtube icomoon-liga"></i><br><span class="icon-count">164k</span>
+</a>
+<a href="rss-news-reviews.php3" class="rss-icon">
+  <i class="head-icon icon-soc-rss2 icomoon-liga"></i><br><span class="icon-count">RSS</span>
+</a>
+
+
+
+
+	<a href="#" onclick="return false;" class="login-icon" id="login-active">
+	  <i class="head-icon icon-login"></i><br><span class="icon-count" style="right:4px;">Log in</span>
+	</a>
+
+	<span class="tooltip" id="login-popup">
+	   <p>
+	     Login with<br />
+	     <a href="login-facebook.php3?rdr=MA%3D%3D"><i class="head-icon icon-soc-fb2"></i>Facebook</a>
+	     <a class="g-login" href="login-google.php3?rdr=MA%3D%3D"><i class="head-icon icon-soc-gplus"></i>Google</a>
+	   </p>
+	</span>
+ <a href="nickname.php3?sSource=MA%3D%3D" class="signup-icon no-margin-right"><i class="head-icon icon-user-plus"></i><span class="icon-count">Sign up</span></a>  
+              </div>  
+           </div>                 
+<ul id="menu" class="main-menu-list">
+<li><a href="/">Home</a></li>
+	<li><a href="news.php3">News</a></li>
+	<li><a href="reviews.php3">Reviews</a></li>
+	<li><a href="blog.php3">Blog</a></li>
+	<li><a href="compare.php3">Compare</a></li>
+	<li><a href="tools.php3">Tools</a></li>
+	<li><a href="glossary.php3">Glossary</a></li>
+	<li><a href="network-bands.php3">Coverage</a></li>
+	<li><a href="faq.php3">FAQ</a></li>
+	<li><a href="contact.php3">Contact</a></li>   
+                  
+      </ul>
+      <!-- SOCIAL CONNECT -->
+    </div>
+    
+
+</header> <!--- HEADER END -->
+
+
+		
+
+<div id="wrapper" class="l-container">
+<div id="outer" class="row">
+
+
+<div id="subHeader" class="col">
+<div id="topPromo">		
+		<div class="alt-display is-review" style="background-image: url(http://cdn.gsmarena.com/imgroot/reviews/16/htc-10/review/-347x151/main03.jpg)">
+		  <a class="table-cell reviews-xl-snazzy" href="htc_10_time_saver-review-1438.php">
+			  <div class="module-review-xl-title">
+			 
+			    	<span>Time-saver edition</span><br>
+			    	<strong>HTC 10 review</strong>
+			   
+			  
+		 	  </div>
+		 </a>
+	  </div>
+</div><div id="topAdv" class="l-box">
+<script language='JavaScript' type='text/javascript'>
+<!--
+   if (!document.phpAds_used) document.phpAds_used = ',';
+   phpAds_random = new String (Math.random()); phpAds_random = phpAds_random.substring(2,11);
+   
+   document.write ("<" + "script language='JavaScript' type='text/javascript' src='");
+   document.write ("http://a.gsmarena.com/adjs.php?n=" + phpAds_random);
+   document.write ("&amp;what=zone:5&amp;target=_blank");
+   document.write ("&amp;exclude=" + document.phpAds_used);
+   if (document.referrer)
+      document.write ("&amp;referer=" + escape(document.referrer));
+   document.write ("'><" + "/script>");
+//-->
+</script><noscript><a href='http://a.gsmarena.com/adclick.php?n=afad88d6' target='_blank'><img src='http://a.gsmarena.com/adview.php?what=zone:5&amp;n=afad88d6' border='0' alt=''></a></noscript>
+</div>   
+</div>
+
+
+<div id="body">
+
+<div class="main float-right"> 
+
+<div class="review-column-index" id="review-sample" style="position:relative;">
+<div class="review-column-list">
+<article class="review-column-list-item review-column-list-item-main ">
+<a href="samsung_galaxy_j2_2016_-review-1462.php" class="block-link">    
+	<header>
+	  <strong class="review-list-item-subtitle subtitle-large">First look</strong><br>
+	  <h3>Samsung Galaxy J2 (2016) preview</h3>
+	</header>                            
+	<img class="review-list-item-image" src="http://cdn.gsmarena.com/imgroot/reviews/16/samsung-galaxy-j2-2016/preview/thumbnail/-728x314/thumb_03.jpg" alt="Samsung Galaxy J2 (2016) preview" />
+</a>
+<footer class="meta-line has-border">
+  <time class="meta-item-time float-left">
+  <i class="head-icon icon-clock2"></i>18 hours ago</time>
+  <a class="meta-item-comments float-right" href="reviewcomm-1462.php"><i class="head-icon icon-comments"></i>30</a>
+</footer>
+	
+</article>
+
+<div class="review-column-list-item review-column-list-item-secondary">
+	<article>
+	
+	  <a href="hauwei_p9_lite-review-1461.php" class="block-link">
+		<header>
+		  <strong>On a diet</strong><br>
+		  <h3>Huawei P9 lite review</h3>
+		</header>
+		<img class="review-list-item-image" src="http://cdn.gsmarena.com/imgroot/reviews/16/huawei-p9-lite/thumb/-347x151/gsmarena_101.jpg" alt="Huawei P9 lite review" />
+	  </a>
+	  <footer class="meta-line has-border clearfix">
+		<a class="meta-item-comments float-right" href="reviewcomm-1461.php"><i class="head-icon icon-comments"></i>30</a>
+	  </footer>
+	</article>
+	<article>
+		
+	  <a href="sony_xperia_e5-review-1460.php" class="block-link">
+		<header>
+		  <strong>Nice ’n easy </strong><br>
+		  <h3>Sony Xperia E5 review</h3>
+		</header>
+		<img class="review-list-item-image" src="http://cdn.gsmarena.com/imgroot/reviews/16/sony-xperia-e5/thumb/-347x151/gsmarena_001.jpg" alt="Sony Xperia E5 review" />
+	  </a>
+	  <footer class="meta-line">
+		<a class="meta-item-comments float-right" href="reviewcomm-1460.php"><i class="head-icon icon-comments"></i>57</a>
+	  </footer>
+	</article>
+	<!-- MORE REVIEWS TOGGLE -->
+   
+<div class="more-reviews-list-container">
+
+<h4>More reviews 
+  <a href="reviews.php3" class="right">View all</a>
+</h4>
+
+<ul class="more-reviews-list">
+		
+		  <li><a href="lenovo_moto_g4-review-1458.php" class="block-link">Moto G4 review</a></li>
+		
+		  <li><a href="samsung_galaxy_s7_active-review-1457.php" class="block-link">Samsung Galaxy S7 Active review</a></li>
+		
+		  <li><a href="vivo_xplay5_elite-review-1456.php" class="block-link">vivo Xplay5 Elite review</a></li>
+		
+		  <li><a href="oneplus_3-review-1455.php" class="block-link">OnePlus 3 review</a></li>
+		
+		  <li><a href="sony_xperia_xa-review-1454.php" class="block-link">Sony Xperia XA review</a></li>
+		
+		  <li><a href="samsung_galaxy_j7_2016-review-1453.php" class="block-link">Samsung Galaxy J7 (2016) review</a></li>
+</ul>
+</div>
+
+<a href="#" class="more-reviews-list-toggle block-link">&#9650;</a>
+  
+
+</div>
+
+</div>
+
+
+<!-- <a href="#" style="position:absolute;top:0;left:0;z-index:20; display:block;width:100%;height:100%"></a>
+<img src="i/review-sample-10.jpg" class="hide" style="position:absolute;top:0;left:0;z-index:10;" alt="" />
+<img src="i/review-sample-11.jpg" style="position:absolute;top:0;left:0;z-index:5;" alt="" /> -->
+</div>
+
+
+	
+
+<div class="news-column-index">
+<h2 class="section-heading">
+<a class="section-heading-link" href="news.php3">News</a>
+</h2>
+
+<ul class="news-column-list">
+
+  <li class="news-column-list-item">
+	<a class="is-accent" href="samsung_outs_galaxy_on5_pro_and_on7_pro_in_india-news-19342.php">
+		<h3>Samsung outs Galaxy On5 Pro and On7 Pro</h3>
+	</a>
+	<div class="news-item is-accent">
+	  <a href="samsung_outs_galaxy_on5_pro_and_on7_pro_in_india-news-19342.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/07/galaxy-on5-on7-pro/-344x215/thumb.jpg" alt="Samsung outs Galaxy On5 Pro and On7 Pro" />
+	  </a>
+	   
+	  <p>The new Galaxy On5 Pro and On7 Pro offer minor upgrades, come with Marshmallow and S-Bike Mode.</p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>40 minutes ago</time>
+		<a class="meta-item-comments" href="newscomm-19342.php"><i class="head-icon icon-comments"></i>7</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a href="lg_stylo_2_plus_now_available_at_metro_pcs_a_57_inch_phablet_with_a_fingerprint_scanner_for_220-news-19341.php">
+		<h3>LG Stylo 2 Plus now available at Metro PCS, a 5.7 inch phablet with a fingerprint scanner for $220</h3>
+	</a>
+	<div class="news-item">
+	  <a href="lg_stylo_2_plus_now_available_at_metro_pcs_a_57_inch_phablet_with_a_fingerprint_scanner_for_220-news-19341.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/07/lg-stylo-2-plus-makes-its-way-to-metro-pcs/-184x111/gsmarena_001.jpg" alt="LG Stylo 2 Plus now available at Metro PCS, a 5.7 inch phablet with a fingerprint scanner for $220" />
+	  </a>
+	   
+	  <p>The LG Stylo 2 Plus features many flagship features like a fingerprint scanner and integrated stylus for a non-flagship price. </p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>5 hours ago</time>
+		<a class="meta-item-comments" href="newscomm-19341.php"><i class="head-icon icon-comments"></i>8</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a href="new_xperia_x_performance_variant_spotted_on_gfx_bench-news-19338.php">
+		<h3>New Xperia X Performance variant spotted on GFX Bench, could it be the Xperia X’s successor?</h3>
+	</a>
+	<div class="news-item">
+	  <a href="new_xperia_x_performance_variant_spotted_on_gfx_bench-news-19338.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/07/sony-xperia-x-performance-variant-spotted-in-gfxbench/-184x111/gsmarena_000.jpg" alt="New Xperia X Performance variant spotted on GFX Bench, could it be the Xperia X’s successor?" />
+	  </a>
+	   
+	  <p>Sony has a (possibly) new flagship on the way. And it's very similar to the Xperia X Performance. </p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>8 hours ago</time>
+		<a class="meta-item-comments" href="newscomm-19338.php"><i class="head-icon icon-comments"></i>52</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a href="xiaomi_redmi_note_4_will_have_dual_camera_according_to_a_teaser_image-news-19335.php">
+		<h3>Xiaomi Redmi Note 4 will have dual camera according to a teaser image</h3>
+	</a>
+	<div class="news-item">
+	  <a href="xiaomi_redmi_note_4_will_have_dual_camera_according_to_a_teaser_image-news-19335.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/07/redmi-note-4-tease/-184x111/gsmarena_001.jpg" alt="Xiaomi Redmi Note 4 will have dual camera according to a teaser image" />
+	  </a>
+	   
+	  <p>The dual rear camera trend will reach Xiaomi too once it launches its next affordable phablet.</p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>11 hours ago</time>
+		<a class="meta-item-comments" href="newscomm-19335.php"><i class="head-icon icon-comments"></i>27</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a href="samsungs_designed_a_slot_that_can_take_both_ufs_and_microsd_cards-news-19333.php">
+		<h3>Samsung's designed a slot that can take both UFS and microSD cards</h3>
+	</a>
+	<div class="news-item">
+	  <a href="samsungs_designed_a_slot_that_can_take_both_ufs_and_microsd_cards-news-19333.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/07/samsung-ufs-slot/-184x111/gsmarena_001.jpg" alt="Samsung's designed a slot that can take both UFS and microSD cards" />
+	  </a>
+	   
+	  <p>This should make its recently announced UFS card lineup a lot more useful in the future.</p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>12 hours ago</time>
+		<a class="meta-item-comments" href="newscomm-19333.php"><i class="head-icon icon-comments"></i>29</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a href="first_actual_image_of_the_samsung_galaxy_note7_surfaces-news-19332.php">
+		<h3>First actual image of the Samsung Galaxy Note7 surfaces</h3>
+	</a>
+	<div class="news-item">
+	  <a href="first_actual_image_of_the_samsung_galaxy_note7_surfaces-news-19332.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/07/note7-live-image/-184x111/gsmarena_001.jpg" alt="First actual image of the Samsung Galaxy Note7 surfaces" />
+	  </a>
+	   
+	  <p>No more renders, ladies and gentlemen - we can now show you a real Note7 handset photographed in the wild somewhere.</p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>13 hours ago</time>
+		<a class="meta-item-comments" href="newscomm-19332.php"><i class="head-icon icon-comments"></i>59</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a class="is-accent" href="huawei_unveils_the_honor_8_with_dual_rear_camera_4gb_of_ram-news-19331.php">
+		<h3>Huawei unveils the Honor 8 with dual rear camera, 4GB of RAM</h3>
+	</a>
+	<div class="news-item is-accent">
+	  <a href="huawei_unveils_the_honor_8_with_dual_rear_camera_4gb_of_ram-news-19331.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/07/honor-8-official/-344x215/gsmarena_003.jpg" alt="Huawei unveils the Honor 8 with dual rear camera, 4GB of RAM" />
+	  </a>
+	   
+	  <p>The camera setup is eerily similar to that of the much more expensive P9, but the chipset is a step down.</p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>14 hours ago</time>
+		<a class="meta-item-comments" href="newscomm-19331.php"><i class="head-icon icon-comments"></i>34</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a href="htc_desire_10_image_leaks_shows_htc_10s_little_brother-news-19329.php">
+		<h3>HTC Desire 10 image leaks, shows HTC 10's little brother</h3>
+	</a>
+	<div class="news-item">
+	  <a href="htc_desire_10_image_leaks_shows_htc_10s_little_brother-news-19329.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/07/htc-desire-10-back/-184x111/gsmarena_001.jpg" alt="HTC Desire 10 image leaks, shows HTC 10's little brother" />
+	  </a>
+	   
+	  <p>Similar design (with different build materials), camera looks familiar too.</p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>15 hours ago</time>
+		<a class="meta-item-comments" href="newscomm-19329.php"><i class="head-icon icon-comments"></i>18</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a href="leaked_renders_show_meizu_mx6s_metal_body-news-19327.php">
+		<h3>Leaked renders show Meizu MX6's metal body</h3>
+	</a>
+	<div class="news-item">
+	  <a href="leaked_renders_show_meizu_mx6s_metal_body-news-19327.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/07/meizu-mx-6-renders/-184x111/gsmarena_001.jpg" alt="Leaked renders show Meizu MX6's metal body" />
+	  </a>
+	   
+	  <p>The design is similar to the Pro 6 and the two will reportedly share quite a few components.</p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>16 hours ago</time>
+		<a class="meta-item-comments" href="newscomm-19327.php"><i class="head-icon icon-comments"></i>5</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a href="another_alleged_iphone_7_photo_spotted_in_the_wild-news-19323.php">
+		<h3>Another alleged iPhone 7 photo spotted in the wild</h3>
+	</a>
+	<div class="news-item">
+	  <a href="another_alleged_iphone_7_photo_spotted_in_the_wild-news-19323.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/07/iphone-7-shot/-184x111/gsmarena_001.jpg" alt="Another alleged iPhone 7 photo spotted in the wild" />
+	  </a>
+	   
+	  <p>The shot looks a lot more authentic than some previous photos and seems to confirm the new design.</p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>18 hours ago</time>
+		<a class="meta-item-comments" href="newscomm-19323.php"><i class="head-icon icon-comments"></i>39</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a href="qualcomm_announces_snapdragon_821_chipset_ups_performance_by_10-news-19326.php">
+		<h3>Qualcomm announces Snapdragon 821 chipset, ups performance by 10%</h3>
+	</a>
+	<div class="news-item">
+	  <a href="qualcomm_announces_snapdragon_821_chipset_ups_performance_by_10-news-19326.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/07/snapdragon-821-ofic/-184x111/gsmarena_001.jpg" alt="Qualcomm announces Snapdragon 821 chipset, ups performance by 10%" />
+	  </a>
+	   
+	  <p>Snapdragon 821 is a slight improvement over its 820 predecessor, higher clock speeds for the CPU.</p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>19 hours ago</time>
+		<a class="meta-item-comments" href="newscomm-19326.php"><i class="head-icon icon-comments"></i>42</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a href="miui_8_global_beta_rom_now_available_for_select_devices-news-19322.php">
+		<h3>MIUI 8 Global Beta ROM now available for select devices</h3>
+	</a>
+	<div class="news-item">
+	  <a href="miui_8_global_beta_rom_now_available_for_select_devices-news-19322.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/07/miui-8-beta/-184x111/gsmarena_001.jpg" alt="MIUI 8 Global Beta ROM now available for select devices" />
+	  </a>
+	   
+	  <p>The first to get the update are the Redmi Note, Redmi Note 4G, Redmi Note Prime, and Mi Max 32GB.</p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>20 hours ago</time>
+		<a class="meta-item-comments" href="newscomm-19322.php"><i class="head-icon icon-comments"></i>33</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a href="publication_thinks_lg_will_miss_shipping_targets_blames_lg_g5-news-19321.php">
+		<h3>LG said to miss shipping targets, LG G5 blamed</h3>
+	</a>
+	<div class="news-item">
+	  <a href="publication_thinks_lg_will_miss_shipping_targets_blames_lg_g5-news-19321.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/07/lg-sales-estimates-prediciton/-184x111/gsmarena_001.jpg" alt="LG said to miss shipping targets, LG G5 blamed" />
+	  </a>
+	   
+	  <p>Aju Business Daily expects LG G5 shipments for Q2 to fall below target, says things will get worse going forward.</p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>21 hours ago</time>
+		<a class="meta-item-comments" href="newscomm-19321.php"><i class="head-icon icon-comments"></i>81</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a href="htc_desire_10_tipped_to_be_coming_this_quarter-news-19318.php">
+		<h3>HTC Desire 10 upper mid-ranger coming this quarter</h3>
+	</a>
+	<div class="news-item">
+	  <a href="htc_desire_10_tipped_to_be_coming_this_quarter-news-19318.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/02/htc-onem10-camera/-184x111/gsmarena_001.jpg" alt="HTC Desire 10 upper mid-ranger coming this quarter" />
+	  </a>
+	   
+	  <p>This was revealed by the usually reliable tipster Evan Blass (@evleaks).</p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>23 hours ago</time>
+		<a class="meta-item-comments" href="newscomm-19318.php"><i class="head-icon icon-comments"></i>23</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a href="after_antutu_galaxy_note7_smn930v_now_appears_on_geekbench-news-19317.php">
+		<h3>After AnTuTu, Galaxy Note7 (SM-N930V) now appears on Geekbench</h3>
+	</a>
+	<div class="news-item">
+	  <a href="after_antutu_galaxy_note7_smn930v_now_appears_on_geekbench-news-19317.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/07/note7-nougat-bench/-184x111/gsmarena_001.jpg" alt="After AnTuTu, Galaxy Note7 (SM-N930V) now appears on Geekbench" />
+	  </a>
+	   
+	  <p>It is said to be, and most likely is, the Verizon variant.</p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>11 Jul 2016</time>
+		<a class="meta-item-comments" href="newscomm-19317.php"><i class="head-icon icon-comments"></i>35</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a href="xiaomi_to_setup_physical_stores_focus_on_offline_sales_as_well-news-19316.php">
+		<h3>Xiaomi to setup physical stores, focus on offline sales</h3>
+	</a>
+	<div class="news-item">
+	  <a href="xiaomi_to_setup_physical_stores_focus_on_offline_sales_as_well-news-19316.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/07/xiaomi-stores/-184x111/gsmarena_001.jpg" alt="Xiaomi to setup physical stores, focus on offline sales" />
+	  </a>
+	   
+	  <p>The company is planning to set up over 1,000 brick and mortar stores in the next two years.</p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>11 Jul 2016</time>
+		<a class="meta-item-comments" href="newscomm-19316.php"><i class="head-icon icon-comments"></i>15</a>
+	  </div> 
+	</div>
+  </li>
+
+  <li class="news-column-list-item">
+	<a href="upcoming_meizu_mx6_spotted_on_geekbench_with_helio_x20_soc_4gb_ram-news-19315.php">
+		<h3>Upcoming Meizu MX6 spotted on Geekbench with Helio X20 SoC, 4GB RAM</h3>
+	</a>
+	<div class="news-item">
+	  <a href="upcoming_meizu_mx6_spotted_on_geekbench_with_helio_x20_soc_4gb_ram-news-19315.php">
+		<img src="http://cdn.gsmarena.com/imgroot/news/16/06/meizu-mx6-july19/-184x111/gsmarena_003.jpg" alt="Upcoming Meizu MX6 spotted on Geekbench with Helio X20 SoC, 4GB RAM" />
+	  </a>
+	   
+	  <p>The device is set to be unveiled next week on July 19.</p>
+	   <div class="meta-line subh-width-test">
+		<time class="meta-item-time"><i class="head-icon icon-clock2"></i>11 Jul 2016</time>
+		<a class="meta-item-comments" href="newscomm-19315.php"><i class="head-icon icon-comments"></i>11</a>
+	  </div> 
+	</div>
+  </li>
+
+
+  
+  <li class="">
+	<a href="news.php3#more" class="more-news-link">More news</a>
+  </li>
+</ul>
+
+<br class="clear" />
+
+</div>
+
+<div class="blog-column-index">
+<h2 class="section-heading">
+<a class="section-heading-link" href="blog.php3">Blog</a>
+</h2>
+<ul class="blog-column-list">
+
+
+  <li class="blog-column-list-item">
+	<a href="nexus_5x_simfree_drops_to__pound170_in_the_uk-blog-19346.php">
+	  <img src="http://cdn.gsmarena.com/imgroot/news/16/07/nexus-5x-gb-deal/-225x126/gsmarena_001.jpg" alt="Nexus 5X (SIM-free) drops to £170 in the UK" />
+	  
+	 
+	  <h3>Nexus 5X (SIM-free) drops to £170 in the UK</h3>
+	</a>
+	<div class="meta-line">
+	  <time class="meta-item-time"><i class="head-icon icon-clock2"></i>12 minutes ago</time>
+	  <a class="meta-item-comments" href="newscomm-19346.php"><i class="head-icon icon-comments"></i>0</a>
+	</div> 
+  </li>
+
+
+  <li class="blog-column-list-item">
+	<a href="huaweis_matebook_2in1_windows_pc_now_available_in_the_us_and_ca_starting_at_700-blog-19340.php">
+	  <img src="http://cdn.gsmarena.com/imgroot/news/16/07/huawei-matebook-now-available-in-north-america/-225x126/gsmarena_000.jpg" alt="Huawei’s MateBook 2in1 Windows PC now available in the US and CA starting at $700" />
+	  
+	 
+	  <h3>Huawei’s MateBook 2in1 Windows PC now available in the US and CA starting at $700</h3>
+	</a>
+	<div class="meta-line">
+	  <time class="meta-item-time"><i class="head-icon icon-clock2"></i>6 hours ago</time>
+	  <a class="meta-item-comments" href="newscomm-19340.php"><i class="head-icon icon-comments"></i>5</a>
+	</div> 
+  </li>
+
+
+  <li class="blog-column-list-item">
+	<a href="deal_refurbished_moto_360_2nd_gen_42mm_for_men_and_women__160-blog-19339.php">
+	  <img src="http://cdn.gsmarena.com/imgroot/news/16/07/moto360-2nd-gen-deal-160-bucks/-225x126/gsmarena_001.jpg" alt="Deal: Refurbished Moto 360 (2nd Gen) 42mm for men and women - $160" />
+	  
+	 
+	  <h3>Deal: Refurbished Moto 360 (2nd Gen) 42mm for men and women - $160</h3>
+	</a>
+	<div class="meta-line">
+	  <time class="meta-item-time"><i class="head-icon icon-clock2"></i>8 hours ago</time>
+	  <a class="meta-item-comments" href="newscomm-19339.php"><i class="head-icon icon-comments"></i>0</a>
+	</div> 
+  </li>
+
+
+  <li class="blog-column-list-item">
+	<a href="twitter_now_supports_gifs_up_to_15mb-blog-19337.php">
+	  <img src="http://cdn.gsmarena.com/imgroot/news/16/07/twitter-raised-gif-limit-to-15mb/-225x126/gsmarena_001.jpg" alt="Twitter now supports GIFs up to 15MB" />
+	  
+	 
+	  <h3>Twitter now supports GIFs up to 15MB</h3>
+	</a>
+	<div class="meta-line">
+	  <time class="meta-item-time"><i class="head-icon icon-clock2"></i>10 hours ago</time>
+	  <a class="meta-item-comments" href="newscomm-19337.php"><i class="head-icon icon-comments"></i>2</a>
+	</div> 
+  </li>
+
+
+  <li class="blog-column-list-item">
+	<a href="googles_two_android_wear_smartwatches_now_portrayed_in_renders-blog-19336.php">
+	  <img src="http://cdn.gsmarena.com/imgroot/news/16/07/google-watches-pictured/-225x126/gsmarena_001.jpg" alt="Google's two Android Wear smartwatches now portrayed in renders" />
+	  
+	 
+	  <h3>Google's two Android Wear smartwatches now portrayed in renders</h3>
+	</a>
+	<div class="meta-line">
+	  <time class="meta-item-time"><i class="head-icon icon-clock2"></i>12 hours ago</time>
+	  <a class="meta-item-comments" href="newscomm-19336.php"><i class="head-icon icon-comments"></i>2</a>
+	</div> 
+  </li>
+
+
+  <li class="blog-column-list-item">
+	<a href="tmobile_is_getting_the_2016_version_of_the_galaxy_tab_s2_bluetooth_certification_reveals-blog-19334.php">
+	  <img src="http://cdn.gsmarena.com/imgroot/news/16/07/t-mobile-new-tab-s2/-225x126/gsmarena_001.jpg" alt="T-Mobile will sell the 2016 version of the Galaxy Tab S2 9.7, Bluetooth certification reveals" />
+	  
+	 
+	  <h3>T-Mobile will sell the 2016 version of the Galaxy Tab S2 9.7, Bluetooth certification reveals</h3>
+	</a>
+	<div class="meta-line">
+	  <time class="meta-item-time"><i class="head-icon icon-clock2"></i>14 hours ago</time>
+	  <a class="meta-item-comments" href="newscomm-19334.php"><i class="head-icon icon-comments"></i>5</a>
+	</div> 
+  </li>
+
+
+  <li class="blog-column-list-item">
+	<a href="microsoft_lumia_650_gets_another_price_drop_in_the_uk_now_costs_9999-blog-19330.php">
+	  <img src="http://cdn.gsmarena.com/imgroot/news/16/07/lumia-650-new-uk-deal/-225x126/gsmarena_001.jpg" alt="Microsoft Lumia 650 gets another price drop in the UK, now costs £99.99" />
+	  
+	 
+	  <h3>Microsoft Lumia 650 gets another price drop in the UK, now costs £99.99</h3>
+	</a>
+	<div class="meta-line">
+	  <time class="meta-item-time"><i class="head-icon icon-clock2"></i>17 hours ago</time>
+	  <a class="meta-item-comments" href="newscomm-19330.php"><i class="head-icon icon-comments"></i>11</a>
+	</div> 
+  </li>
+
+
+  <li class="blog-column-list-item">
+	<a href="whatsapp_drops_support_for_symbian_app_to_stop_working_on_dec_31-blog-19328.php">
+	  <img src="http://cdn.gsmarena.com/imgroot/news/16/07/whatsapp-symbian-dead/-225x126/gsmarena_001.jpg" alt="WhatsApp drops support for Symbian, app to stop working on Dec 31" />
+	  
+	 
+	  <h3>WhatsApp drops support for Symbian, app to stop working on Dec 31</h3>
+	</a>
+	<div class="meta-line">
+	  <time class="meta-item-time"><i class="head-icon icon-clock2"></i>18 hours ago</time>
+	  <a class="meta-item-comments" href="newscomm-19328.php"><i class="head-icon icon-comments"></i>44</a>
+	</div> 
+  </li>
+
+
+  <li class="blog-column-list-item">
+	<a href="a_total_of_110_million_redmi_phones_have_been_sold_by_xiaomi_so_far-blog-19324.php">
+	  <img src="http://cdn.gsmarena.com/imgroot/news/16/03/redmi-note-3-launch/-225x126/gsmarena_001.jpg" alt="A total of 110 million Redmi phones have been sold by Xiaomi so far" />
+	  
+	 
+	  <h3>A total of 110 million Redmi phones have been sold by Xiaomi so far</h3>
+	</a>
+	<div class="meta-line">
+	  <time class="meta-item-time"><i class="head-icon icon-clock2"></i>19 hours ago</time>
+	  <a class="meta-item-comments" href="newscomm-19324.php"><i class="head-icon icon-comments"></i>11</a>
+	</div> 
+  </li>
+
+
+  <li class="blog-column-list-item">
+	<a href="groupon_sells_apple_watch_milanese_loop_for_25-blog-19325.php">
+	  <img src="http://cdn.gsmarena.com/imgroot/news/16/07/groupon-milanese-loop/-225x126/gsmarena_001.jpg" alt="Groupon sells Apple Watch Milanese Loop for $25" />
+	  
+	 
+	  <h3>Groupon sells Apple Watch Milanese Loop for $25</h3>
+	</a>
+	<div class="meta-line">
+	  <time class="meta-item-time"><i class="head-icon icon-clock2"></i>20 hours ago</time>
+	  <a class="meta-item-comments" href="newscomm-19325.php"><i class="head-icon icon-comments"></i>3</a>
+	</div> 
+  </li>
+
+
+  <li class="blog-column-list-item">
+	<a href="hp_elite_x3_bundle_will_reportedly_carry_1200_price_tag-blog-19320.php">
+	  <img src="http://cdn.gsmarena.com/imgroot/news/16/07/elite-x3-bundle/-225x126/gsmarena_001.jpg" alt="HP Elite x3 Bundle to cost €1200" />
+	  
+	 
+	  <h3>HP Elite x3 Bundle to cost €1200</h3>
+	</a>
+	<div class="meta-line">
+	  <time class="meta-item-time"><i class="head-icon icon-clock2"></i>23 hours ago</time>
+	  <a class="meta-item-comments" href="newscomm-19320.php"><i class="head-icon icon-comments"></i>26</a>
+	</div> 
+  </li>
+
+
+  <li class="blog-column-list-item">
+	<a href="uk_price_of_oneplus_3_goes_up_to__pound330_after_pound_drops_in_value-blog-19319.php">
+	  <img src="http://cdn.gsmarena.com/imgroot/news/16/07/oneplus-3-uk-price-hike/-225x126/gsmarena_001.jpg" alt="UK price of OnePlus 3 goes up to £329 after pound drops in value" />
+	  
+	 
+	  <h3>UK price of OnePlus 3 goes up to £329 after pound drops in value</h3>
+	</a>
+	<div class="meta-line">
+	  <time class="meta-item-time"><i class="head-icon icon-clock2"></i>11 Jul 2016</time>
+	  <a class="meta-item-comments" href="newscomm-19319.php"><i class="head-icon icon-comments"></i>14</a>
+	</div> 
+  </li>
+
+
+  <li class="">
+	<a href="blog.php3#more" class="more-news-link pushR5">More blog posts</a>
+  </li>
+</ul>
+</div>
+
+
+
+					
+
+
+</div>
+
+<aside class="sidebar col left">
+
+<div class="brandmenu-v2 light l-box clearfix">
+<p class="pad">
+<a href="search.php3" class="pad-single pad-finder">
+<i class="head-icon icon-search-right"></i>
+<span>Phone finder</span></a>
+</p>
+<ul>
+<li><a href="samsung-phones-9.php">Samsung</a></li><li><a href="apple-phones-48.php">Apple</a></li><li><a href="microsoft-phones-64.php">Microsoft</a></li><li><a href="nokia-phones-1.php">Nokia</a></li><li><a href="sony-phones-7.php">Sony</a></li><li><a href="lg-phones-20.php">LG</a></li><li><a href="htc-phones-45.php">HTC</a></li><li><a href="motorola-phones-4.php">Motorola</a></li><li><a href="huawei-phones-58.php">Huawei</a></li><li><a href="lenovo-phones-73.php">Lenovo</a></li><li><a href="xiaomi-phones-80.php">Xiaomi</a></li><li><a href="acer-phones-59.php">Acer</a></li><li><a href="asus-phones-46.php">Asus</a></li><li><a href="oppo-phones-82.php">Oppo</a></li><li><a href="oneplus-phones-95.php">OnePlus</a></li><li><a href="meizu-phones-74.php">Meizu</a></li><li><a href="blackberry-phones-36.php">BlackBerry</a></li><li><a href="alcatel-phones-5.php">Alcatel</a></li><li><a href="zte-phones-62.php">ZTE</a></li><li><a href="toshiba-phones-44.php">Toshiba</a></li><li><a href="vodafone-phones-53.php">Vodafone</a></li><li><a href="gigabyte-phones-47.php">Gigabyte</a></li><li><a href="pantech-phones-32.php">Pantech</a></li><li><a href="xolo-phones-85.php">XOLO</a></li><li><a href="lava-phones-94.php">Lava</a></li><li><a href="micromax-phones-66.php">Micromax</a></li><li><a href="blu-phones-67.php">BLU</a></li><li><a href="gionee-phones-92.php">Gionee</a></li><li><a href="vivo-phones-98.php">vivo</a></li><li><a href="yu-phones-100.php">YU</a></li><li><a href="verykool-phones-70.php">verykool</a></li><li><a href="maxwest-phones-87.php">Maxwest</a></li><li><a href="niu-phones-79.php">NIU</a></li><li><a href="yezz-phones-78.php">Yezz</a></li><li><a href="parla-phones-81.php">Parla</a></li><li><a href="plum-phones-72.php">Plum</a></li></ul>
+
+<p class="pad">
+<a href="makers.php3" class="pad-multiple pad-allbrands">
+  <i class="head-icon icon-mobile-phone231"></i>
+  <span>All brands</span>
+</a>
+<a href="rumored.php3" class="pad-multiple pad-rumormill">
+  <i class="head-icon icon-rumored"></i>
+  <span>Rumor mill</span>
+</a>
+</p>
+</div>
+<div class="adv banner-mpu">
+
+<script language='JavaScript' type='text/javascript'>
+<!--
+   if (!document.phpAds_used) document.phpAds_used = ',';
+   phpAds_random = new String (Math.random()); phpAds_random = phpAds_random.substring(2,11);
+   
+   document.write ("<" + "script language='JavaScript' type='text/javascript' src='");
+   document.write ("http://a.gsmarena.com/adjs.php?n=" + phpAds_random);
+   document.write ("&amp;what=zone:156&amp;target=_blank");
+   document.write ("&amp;exclude=" + document.phpAds_used);
+   if (document.referrer)
+      document.write ("&amp;referer=" + escape(document.referrer));
+   document.write ("'><" + "/script>");
+//-->
+</script><noscript><a href='http://a.gsmarena.com/adclick.php?n=afad88d6' target='_blank'><img src='http://a.gsmarena.com/adview.php?what=zone:5&amp;n=afad88d6' border='0' alt=''></a></noscript>
+</div>
+
+
+<div class="module module-phones module-instores">
+<h4 class="section-heading">Latest devices</h4>
+<div style="overflow:hidden"><a href="samsung_galaxy_j2_(2016)-8083.php" class="module-phones-link"><img src="http://cdn2.gsmarena.com/vv/bigpic/samsung-galaxy-j2-2016-new.jpg"><br>Samsung Galaxy J2 (2016)</a><a href="samsung_galaxy_j_max-8186.php" class="module-phones-link"><img src="http://cdn2.gsmarena.com/vv/bigpic/samsung-galaxy-j-max.jpg"><br>Samsung Galaxy J Max</a><a href="lg_x_skin-8184.php" class="module-phones-link"><img src="http://cdn2.gsmarena.com/vv/bigpic/lg-x-skin.jpg"><br>LG X Skin</a><a href="lg_x5-8183.php" class="module-phones-link"><img src="http://cdn2.gsmarena.com/vv/bigpic/lg-x5.jpg"><br>LG X5</a><a href="zte_nubia_n1-8182.php" class="module-phones-link"><img src="http://cdn2.gsmarena.com/vv/bigpic/zte-nubia-n1.jpg"><br>ZTE nubia N1</a><a href="vivo_x7_plus-8181.php" class="module-phones-link"><img src="http://cdn2.gsmarena.com/vv/bigpic/vivo-x7-plus.jpg"><br>vivo X7 Plus</a></div>		
+</div>
+
+<div class="module module-phones module-instores">
+<h4 class="section-heading">In stores now</h4>
+<div style="overflow:hidden"><a href="zte_axon_7-8067.php" class="module-phones-link"><img src="http://cdn2.gsmarena.com/vv/bigpic/zte-axon-7.jpg"><br>ZTE Axon 7</a><a href="lg_k5-7980.php" class="module-phones-link"><img src="http://cdn2.gsmarena.com/vv/bigpic/lg-k5-.jpg"><br>LG K5</a><a href="lg_g5_se-8056.php" class="module-phones-link"><img src="http://cdn2.gsmarena.com/vv/bigpic/lg-g5.jpg"><br>LG G5 SE</a><a href="oppo_a59-8155.php" class="module-phones-link"><img src="http://cdn2.gsmarena.com/vv/bigpic/oppo-a59.jpg"><br>Oppo A59</a><a href="oneplus_3-7995.php" class="module-phones-link"><img src="http://cdn2.gsmarena.com/vv/bigpic/oneplus-3-.jpg"><br>OnePlus 3</a><a href="sony_xperia_x_performance-7949.php" class="module-phones-link"><img src="http://cdn2.gsmarena.com/vv/bigpic/sony-xperia-x-performance.jpg"><br>Sony Xperia X Performance</a></div>		
+</div>
+
+			
+
+
+
+
+
+
+
+
+<div class="module module-rankings s3">
+<h4 class="section-heading">Top 10 by daily interest</h4>
+<table class="module-fit green" cellspacing="0">
+<colgroup>
+  <col class="numb">
+  <col class="phon">
+  <col class="hits">
+  <col class="dummy">
+</colgroup>
+<thead>              
+  <tr>
+	<th scope="col" id="th3a" abbr="">&nbsp;</th>
+	<th scope="col" id="th3b" abbr="">Device</th>
+	<th scope="col" id="th3c" abbr="">Daily hits</th>
+	<th scope="col">&nbsp;</th>
+  </tr>
+</thead>
+<tbody>             
+<tr>
+<tr><td headers="th3a">1.</td><th headers="th3b"><a href="xiaomi_redmi_note_3-7863.php"><nobr>Xiaomi Redmi Note 3</nobr></a></th><td headers="th3c">115,150</td><td></td></tr><tr><td headers="th3a">2.</td><th headers="th3b"><a href="samsung_galaxy_j7_(2016)-7870.php"><nobr>Samsung Galaxy J7 (2016)</nobr></a></th><td headers="th3c">108,004</td><td></td></tr><tr><td headers="th3a">3.</td><th headers="th3b"><a href="motorola_moto_g4_plus-8050.php"><nobr>Motorola Moto G4 Plus</nobr></a></th><td headers="th3c">75,025</td><td></td></tr><tr><td headers="th3a">4.</td><th headers="th3b"><a href="oneplus_3-7995.php"><nobr>OnePlus 3</nobr></a></th><td headers="th3c">68,152</td><td></td></tr><tr><td headers="th3a">5.</td><th headers="th3b"><a href="samsung_galaxy_j5-7184.php"><nobr>Samsung Galaxy J5</nobr></a></th><td headers="th3c">62,553</td><td></td></tr><tr><td headers="th3a">6.</td><th headers="th3b"><a href="samsung_galaxy_j7-7185.php"><nobr>Samsung Galaxy J7</nobr></a></th><td headers="th3c">58,190</td><td></td></tr><tr><td headers="th3a">7.</td><th headers="th3b"><a href="samsung_galaxy_s7-7821.php"><nobr>Samsung Galaxy S7</nobr></a></th><td headers="th3c">57,070</td><td></td></tr><tr><td headers="th3a">8.</td><th headers="th3b"><a href="samsung_galaxy_j3_(2016)-7760.php"><nobr>Samsung Galaxy J3 (2016)</nobr></a></th><td headers="th3c">57,011</td><td></td></tr><tr><td headers="th3a">9.</td><th headers="th3b"><a href="apple_iphone_5s-5685.php"><nobr>Apple iPhone 5s</nobr></a></th><td headers="th3c">54,033</td><td></td></tr><tr><td headers="th3a">10.</td><th headers="th3b"><a href="samsung_galaxy_s7_edge-7945.php"><nobr>Samsung Galaxy S7 edge</nobr></a></th><td headers="th3c">53,954</td><td></td></tr></tbody>
+
+</table>
+</div>
+
+<div class="module module-rankings s3">
+<h4 class="section-heading">Top 10 by fans</h4>
+<table class="module-fit blue" cellspacing="0">
+<colgroup>
+  <col class="numb">
+  <col class="phon">
+  <col class="hits">
+  <col class="dummy">
+</colgroup>
+<thead>              
+  <tr>
+	<th scope="col" id="th3a" abbr="">&nbsp;</th>
+	<th scope="col" id="th3b" abbr="">Device</th>
+	<th scope="col" id="th3c" abbr="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favorites</th>
+	<th scope="col">&nbsp;</th>
+  </tr>
+</thead>
+<tbody>             
+<tr>
+<tr><td headers="th3a">1.</td><th headers="th3b"><a href="samsung_galaxy_s6_edge-7079.php"><nobr>Samsung Galaxy S6 edge</nobr></a></th><td headers="th3c">1,415</td><td></td></tr><tr><td headers="th3a">2.</td><th headers="th3b"><a href="xiaomi_mi_5-6948.php"><nobr>Xiaomi Mi 5</nobr></a></th><td headers="th3c">1,193</td><td></td></tr><tr><td headers="th3a">3.</td><th headers="th3b"><a href="sony_xperia_z5_premium-7536.php"><nobr>Sony Xperia Z5 Premium</nobr></a></th><td headers="th3c">1,171</td><td></td></tr><tr><td headers="th3a">4.</td><th headers="th3b"><a href="samsung_galaxy_s7-7821.php"><nobr>Samsung Galaxy S7</nobr></a></th><td headers="th3c">1,102</td><td></td></tr><tr><td headers="th3a">5.</td><th headers="th3b"><a href="samsung_galaxy_s7_edge-7945.php"><nobr>Samsung Galaxy S7 edge</nobr></a></th><td headers="th3c">1,099</td><td></td></tr><tr><td headers="th3a">6.</td><th headers="th3b"><a href="samsung_galaxy_note5-7431.php"><nobr>Samsung Galaxy Note5</nobr></a></th><td headers="th3c">969</td><td></td></tr><tr><td headers="th3a">7.</td><th headers="th3b"><a href="htc_10-7884.php"><nobr>HTC 10</nobr></a></th><td headers="th3c">946</td><td></td></tr><tr><td headers="th3a">8.</td><th headers="th3b"><a href="xiaomi_redmi_note_3-7863.php"><nobr>Xiaomi Redmi Note 3</nobr></a></th><td headers="th3c">919</td><td></td></tr><tr><td headers="th3a">9.</td><th headers="th3b"><a href="huawei_nexus_6p-7588.php"><nobr>Huawei Nexus 6P</nobr></a></th><td headers="th3c">908</td><td></td></tr><tr><td headers="th3a">10.</td><th headers="th3b"><a href="lg_g5-7815.php"><nobr>LG G5</nobr></a></th><td headers="th3c">862</td><td></td></tr></tbody>
+
+</table>
+</div> 
+
+<div class="module module-phones module-additions">
+<h4 class="section-heading">Latest additons</h4>
+<ul>
+<li><a href="sony_xperia_e5-3d-spin-8113.php" class="b-spin">Sony Xperia E5 360° spin</a></li>
+<li><a href="oneplus_3-3d-spin-7995.php" class="b-spin">OnePlus 3 360° spin</a></li>
+<li><a href="motorola_moto_g4-3d-spin-8103.php" class="b-spin">Motorola Moto G4 360° spin</a></li>
+<li><a href="sony_xperia_e5-pictures-8113.php#gallery" class="b-pic">Sony Xperia E5 gallery</a></li>
+<li><a href="motorola_moto_g4-pictures-8103.php#gallery" class="b-pic">Motorola Moto G4 gallery</a></li>
+<li><a href="oppo_f1_plus-pictures-7967.php#gallery" class="b-pic">OPPO F1 Plus FC Barcelona Edition pics</a></li>
+<li><a href="vivo_xplay5_elite-3d-spin-7970.php" class="b-spin">vivo Xplay5 Elite 360° spin</a></li>
+<li><a href="vivo_xplay5_elite-pictures-7970.php#gallery" class="b-pic">vivo Xplay5 Elite gallery</a></li>
+<li><a href="oneplus_3-pictures-7995.php#gallery" class="b-pic">OnePlus 3 gallery</a></li>
+<li><a href="samsung_galaxy_j7_(2016)-3d-spin-7870.php" class="b-spin">Samsung Galaxy J7 (2016) 360° spin</a></li>
+<li><a href="samsung_galaxy_j7_(2016)-pictures-7870.php#gallery" class="b-spin">Samsung Galaxy J7 (2016) gallery</a></li>
+<li><a href="sony_xperia_x_performance-3d-spin-7949.php" class="b-spin">Sony Xperia X Performance 360° spin</a></li>
+<li><a href="sony_xperia_xa-pictures-7950.php#gallery" class="b-pic">Sony Xperia XA gallery</a></li>
+<li><a href="xiaomi_mi_max-pictures-8057.php#gallery" class="b-pic">Xiaomi Mi Max gallery</a></li>
+<li><a href="sony_xperia_x_performance-pictures-7949.php#gallery" class="b-pic">Sony Xperia X Performance gallery</a></li>	
+</ul>	
+</div> 
+<div class="adv banner-mpu">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4873060236139130";
+/* Main Tall MPU BTF */
+google_ad_slot = "5911982306";
+google_ad_width = 300;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+	</div>
+
+</aside>
+
+</div><!-- id body -->
+</div><!-- id outer -->
+
+
+<div id="footer">
+ <div class="footer-logo">
+     <img src="http://cdn2.gsmarena.com/w/css/logo-gsmarena-com.gif" alt="" />
+    </div>
+    <div id="footmenu">
+<p>
+<a href="/">Home</a>
+<a href="news.php3">News</a>
+<a href="reviews.php3">Reviews</a>
+<a href="blog.php3">Blog</a>
+<a href="compare.php3">Compare</a>
+<a href="network-bands.php3">Coverage</a>
+<a href="glossary.php3">Glossary</a>
+<a href="faq.php3">FAQ</a>
+
+<a href="rss-news-reviews.php3" class="rss-icon">RSS feed</a></li>
+<a target="_blank" href="https://www.facebook.com/GSMArenacom-189627474421/" class="fb-icon">Facebook</a>
+<a target="_blank" href="http://twitter.com/gsmarena_com" class="tw-icon">Twitter</a>
+
+</p>
+<p>
+&copy; 2000-2016 <a href="team.php3">GSMArena.com</a> 
+<a href="http://www.gsmarena.com/switch.php3?ver=mobile&ref=MA%3D%3D">Mobile version</a>
+<a href="contact.php3">Contact us</a>
+<a href="advert.php3">Advertising</a>
+<a href="privacy.php3">Privacy</a> 
+<a href="terms.php3">Terms of use</a>
+			
+</p>			
+<div id="cdn-hosting">
+<a href="http://www.maxcdn.com/" target="_blank" rel="nofollow">
+  <span class="center">CDN by</span><br />
+  <img src="http://cdn2.gsmarena.com/w/css/maxcdn.gif" alt="" />
+</a>
+</div>
+  </div>
+ </div>
+ 
+ 
+
+</div>
+
+<script>
+function checkForAdBlocker() {
+    function gcs(e, p) { return window.getComputedStyle(e, null).getPropertyValue(p); }
+    var elem = document.querySelector('#topAdv');
+    var visible = (gcs(elem, "display") == "block") && (gcs(elem, "visibility") == "visible") && (gcs(elem, "height") != "0px") && (gcs(elem, "width") != "0px");
+    return !visible? "yes" : "no";
+}
+sAdBlockerUsed =  checkForAdBlocker();
+</script>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-131096-1', 'auto' );
+	ga('send', 'pageview'
+, { 'dimension2': '1' }
+	);
+
+</script>
+
+</body></html>

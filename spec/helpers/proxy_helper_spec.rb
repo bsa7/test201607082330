@@ -16,8 +16,9 @@ RSpec.describe ProxyHelper, type: :helper do
   describe '#parse_proxy_list_text' do
     it 'load list txtfile and return as array of ip:port' do
       links_text = helper.parse_proxy_list_links&.slice(1, 1)&.first
-      txt_file = page_load(url: "http://webanetlabs.net#{links_text}")
-      expect(helper.parse_proxy_list_text(txt_file).slice(3, 1).first).to match(/(\d+\.)\d+:\d+/)
+      ip_port_regexp = /(\d+\.)\d+:\d+/
+      txt_file = page_load(url: "http://webanetlabs.net#{links_text}", check_stamp: ip_port_regexp)
+      expect(helper.parse_proxy_list_text(txt_file).slice(3, 1).first).to match(ip_port_regexp)
     end
   end
 end
