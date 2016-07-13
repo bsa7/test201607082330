@@ -7,7 +7,7 @@ module ProxyHelper
   end
 
   def parse_proxy_list_links
-    load_proxy_index&.scan(%r{\/freeproxy\/proxylist_at_[0-9\.]+.txt})
+    load_proxy_index&.scan(/\/freeproxy\/proxylist_at_[0-9\.]+.txt/)
   end
 
   def parse_proxy_list_text(text)

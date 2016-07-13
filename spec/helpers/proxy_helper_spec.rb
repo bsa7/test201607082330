@@ -9,7 +9,7 @@ RSpec.describe ProxyHelper, type: :helper do
   describe '#parse_proxy_list_links' do
     it 'parse page for links to txt files' do
       links_text = helper.parse_proxy_list_links&.slice(1, 1)&.first
-      expect(links_text).to match(%r{\/freeproxy\/proxylist_at_[0-9\.]+\.txt})
+      expect(links_text).to match(/\/freeproxy\/proxylist_at_[0-9\.]+\.txt/)
     end
   end
 

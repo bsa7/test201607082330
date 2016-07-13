@@ -18,25 +18,4 @@ RSpec.describe Proxy, type: :model do
       expect(proxy_updated.success_attempts_count).to eq(previous_success_attempts_count + 1)
     end
   end
-
-  describe '.mark_all' do
-    it 'receive options and mark proxies as good or bad' do
-      proxies = Proxy.get_list(4)
-      proxy_records = Proxy.where(ip_port: proxies)
-      contents = [nil, 'sample', nil, nil]
-      expectations = proxy_records.each_with_index.map do |record, index|
-        [
-          record.total_attempts_count + 1,
-          record.success_attempts_count + (contents[index] ? 1 : 0)
-        ]
-      end
-      Rails.logger.ap proxies: proxies, proxy_records: proxy_records, expectations: expectations
-      Proxy.mark_all(proxy_list: proxies, contents: contents)
-      expectations.each_with_index do |expectation, index|
-        proxy = Proxy.find_by_ip_port(proxies[index])
-        expect(proxy.total_attempts_count).to eq(expectation[0])
-        expect(proxy.success_attempts_count).to eq(expectation[1])
-      end
-    end
-  end
 end

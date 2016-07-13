@@ -1,10 +1,11 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Test20160708
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = csrf_meta_tags
-  %body
-    = yield
+    = render 'shared/head'
+  %body.layout-waterfall.mdl-color--grey-100.mdl-color-text--grey-700.mdl-base
+    .mdl-layout.mdl-js-layout
+      = render 'shared/header'
+      = render 'shared/sidebar'
+      %main.mdl-layout__content
+        .mdl-layout__tab-panel.is-active
+          = yield

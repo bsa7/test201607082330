@@ -2,3 +2,7 @@ ru:
   brands:
     index:
       brand_list: Список брендов
+  shared:
+    header:
+      title:
+        Тест201607082330
