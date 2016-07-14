@@ -15,6 +15,11 @@ gem 'therubyracer', '0.12.2', platforms: :ruby
 gem 'turbolinks', '5.0.0'
 gem 'uglifier', '3.0.0'
 gem 'yui-compressor', '0.12.0'
+gem 'unicode'
+gem 'recursive-open-struct', '1.0.1'
+gem 'flavour_saver', '0.3.8'
+gem 'handlebars_assets', '0.23.0'
+gem 'handlebars', '0.8.0'
 
 group :development do
   gem 'byebug'

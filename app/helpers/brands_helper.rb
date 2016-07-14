@@ -3,6 +3,16 @@ require 'yaml'
 
 # Brands Helper
 module BrandsHelper
+  def set_brand_list
+    @brand_list = load_brands
+  end
+
+  def set_model_list
+    brand_name = params[:id]
+    brand_link = @brand_list.select { |brand_link| brand_link[:name] == brand_name }.first
+    @model_list = load_models brand_link
+  end
+
   def load_brands
     brand_list = []
     parser_settings.each do |site_settings|
@@ -15,7 +25,7 @@ module BrandsHelper
     model_list = []
     parser_settings.each do |site_settings|
       download_all_brand_pages(brand_link, site_settings).each do |page|
-        scan_page_for_model_links(page, model_list, site_settings)
+        scan_page_for_model_links(page, model_list, brand_link, site_settings)
       end
     end
     model_list
@@ -23,9 +33,9 @@ module BrandsHelper
 
   private
 
-  def scan_page_for_model_links(page, model_list, site_settings)
+  def scan_page_for_model_links(page, model_list, brand_link, site_settings)
     page.scan(site_settings[:model_link_regexp]).each do |link|
-      model_list << parse_model_link(link.first, site_settings)
+      model_list << parse_model_link(link.first, brand_link, site_settings)
     end
   end
 
@@ -39,7 +49,7 @@ module BrandsHelper
 
   def download_first_brand_page(brand_link, site_settings)
     brand_pages = []
-    url = "#{site_settings[:host]}#{brand_link[:href]}"
+    url = "#{site_settings[:host]}#{brand_link[:path]}"
     brand_pages << page_load(url: url, check_stamp: site_settings[:brand_page_check_stamp_regexp])
   end
 
@@ -62,7 +72,7 @@ module BrandsHelper
   end
 
   def brand_link_to_url(link, site_settings)
-    "#{site_settings[:host]}#{parse_brand_link(link, site_settings)[:href]}"
+    "#{site_settings[:host]}#{parse_brand_link(link, site_settings)[:path]}"
   end
 
   def slice_interval(index)
@@ -96,15 +106,16 @@ module BrandsHelper
   def parse_brand_link(link_html, site_settings)
     {
       name: scan_for_all_matches(link_html, site_settings[:brand_parse_link_name_regexp]),
-      href: scan_for_all_matches(link_html, site_settings[:brand_parse_link_href_regexp]),
+      path: scan_for_all_matches(link_html, site_settings[:brand_parse_link_href_regexp]),
       host: site_settings[:host]
     }
   end
 
-  def parse_model_link(link_html, site_settings)
+  def parse_model_link(link_html, brand_link, site_settings)
     {
-      href: scan_for_all_matches(link_html, site_settings[:model_parse_link_href_regexp]),
+      path: scan_for_all_matches(link_html, site_settings[:model_parse_link_href_regexp]),
       img_src: scan_for_all_matches(link_html, site_settings[:model_parse_link_img_src_regexp]),
+      brand_name: brand_link[:name],
       name: scan_for_all_matches(link_html, site_settings[:model_parse_link_name_regexp]),
       title: scan_for_all_matches(link_html, site_settings[:model_parse_link_title_regexp]),
       host: site_settings[:host]

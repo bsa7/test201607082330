@@ -1,0 +1,3 @@
+- template_name = 'brands/show.hamlbars'
+- tables_compiled_template = compile_rails_template template_name
+= render_handlebars_template(tables_compiled_template, model_list: @model_list).html_safe

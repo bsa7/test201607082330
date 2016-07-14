@@ -18,6 +18,25 @@ module ApplicationHelper
     end
   end
 
+  def render_handlebars_template(handlebars_template, data_hash)
+    template = Tilt['handlebars'].new { handlebars_template }
+    data = RecursiveOpenStruct.new(data_hash, recurse_over_arrays: true)
+    template.render(data)
+  end
+
+  def compile_rails_template(template_file_name)
+    templates_path = 'app/assets/javascripts/templates/hamlbars'
+    template_full_path = "#{Rails.root}/#{templates_path}/#{template_file_name}"
+    template_content = File.read(template_full_path)
+    if template_file_name[/\.hbs\.erb\z/]
+      compiled_rails_template = ERB.new(template_content).result()
+    elsif template_file_name[/\.hamlbars\z/]
+      stub = ''
+      compiled_rails_template = Haml::Engine.new(template_content).render(stub)
+    end
+    compiled_rails_template
+  end
+
   private
 
   def check_expiration(options)
