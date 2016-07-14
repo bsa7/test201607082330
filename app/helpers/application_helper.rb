@@ -25,11 +25,9 @@ module ApplicationHelper
   end
 
   def compile_rails_template(template_file_name)
-    templates_path = 'app/assets/javascripts/templates/hamlbars'
-    template_full_path = "#{Rails.root}/#{templates_path}/#{template_file_name}"
-    template_content = File.read(template_full_path)
+    template_content = read_template_content(template_file_name)
     if template_file_name[/\.hbs\.erb\z/]
-      compiled_rails_template = ERB.new(template_content).result()
+      compiled_rails_template = ERB.new(template_content).result
     elsif template_file_name[/\.hamlbars\z/]
       stub = ''
       compiled_rails_template = Haml::Engine.new(template_content).render(stub)
@@ -38,6 +36,12 @@ module ApplicationHelper
   end
 
   private
+
+  def read_template_content(template_file_name)
+    templates_path = 'app/assets/javascripts/templates/hamlbars'
+    template_full_path = "#{Rails.root}/#{templates_path}/#{template_file_name}"
+    File.read(template_full_path)
+  end
 
   def check_expiration(options)
     if File.exist?(options[:cache_file_name])

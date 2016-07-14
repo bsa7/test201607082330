@@ -7,11 +7,6 @@ module BrandsHelper
     @brand_list = load_brands
   end
 
-  def set_brand_selected(brand_name)
-    set_brand_list unless @brand_list
-    @brand_selected = @brand_list.select { |brand_link| brand_link[:name] == brand_name }.first
-  end
-
   private
 
   def load_brands

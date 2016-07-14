@@ -22,11 +22,4 @@ RSpec.describe BrandsController, type: :controller do
       expect(response.content_type).to eq 'application/json'
     end
   end
-
-  describe 'GET show' do
-    it 'responds to /Samsung query' do
-      get :show, params: { id: 'Samsung' }
-      expect(response.content_type).to eq 'text/html'
-    end
-  end
 end

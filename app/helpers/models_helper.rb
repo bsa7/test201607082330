@@ -17,30 +17,27 @@ module ModelsHelper
     empty_key_count = 0
     specs_sections.each do |specs_section|
       specs_key = specs_section.first.scan(/<th rowspan=[^>]+>([\s\S]+?)<\/th>/).flatten[0]
-      specs_key_sym = "key_#{specs_key.underscore.gsub(/ {2,}/, ' ').gsub(/ /, '_')}".to_sym
       specs_hash = {
         key: specs_key,
         value: []
       }
       specs_items = specs_section.first.scan(/<tr[^>]*?>([\s\S]+?)<\/tr>/).flatten
-      specs_item_key_sym = :nil
       specs_items.each do |specs_item|
-        specs_item_pair = specs_item.scan(/<td[^>]*?>([\s\S]+?)<\/td>/).flatten.map{|x|x.gsub(/<[^>]+>/, '').gsub(/&[a-z]+;/, '').gsub(/\r\n/, '')}
-        if specs_item_pair.length == 2
-          specs_item_value = specs_item_pair[1].strip.gsub(/ {2,}/, ' ')
-          if specs_item_pair[0].blank?
-            specs_item_key = "empty_key_#{empty_key_count}"
-            empty_key_count += 1
-            specs_item_key_sym = specs_item_key.to_sym
-          else
-            specs_item_key = specs_item_pair[0]
-            specs_item_key_sym = "key_#{specs_item_key.underscore.gsub(/ {2,}/, ' ').gsub(/ /, '_')}".to_sym
-          end
-          specs_hash[:value] << {
-            key: specs_item_key,
-            value: specs_item_value
-          }
+        specs_item_pair = specs_item.scan(/<td[^>]*?>([\s\S]+?)<\/td>/)
+                                    .flatten
+                                    .map { |x| x.gsub(/<[^>]+>/, '').gsub(/&[a-z]+;/, '').gsub(/\r\n/, '') }
+        next if specs_item_pair.length != 2
+        specs_item_value = specs_item_pair[1].strip.gsub(/ {2,}/, ' ')
+        if specs_item_pair[0].blank?
+          specs_item_key = "empty_key_#{empty_key_count}"
+          empty_key_count += 1
+        else
+          specs_item_key = specs_item_pair[0]
         end
+        specs_hash[:value] << {
+          key: specs_item_key,
+          value: specs_item_value
+        }
       end
       @model_selected[:specs] << specs_hash
     end
@@ -48,6 +45,11 @@ module ModelsHelper
   end
 
   private
+
+  def set_brand_selected(brand_name)
+    set_brand_list unless @brand_list
+    @brand_selected = @brand_list.select { |brand_link| brand_link[:name] == brand_name }.first
+  end
 
   def load_models(brand_link)
     model_list = []
