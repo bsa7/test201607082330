@@ -12,7 +12,7 @@ RSpec.describe ModelsHelper, type: :helper do
     end
   end
 
-  describe '#set_model_data' do
+  describe '#set_model_selected' do
     it 'will receive model page and parse spec list' do
       model_data = helper.set_model_selected('Samsung', 'Galaxy On7 Pro')
       expect(model_data).to have_key(:img_src)
