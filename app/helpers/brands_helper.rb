@@ -7,11 +7,12 @@ module BrandsHelper
     @brand_list = load_brands
   end
 
-  def set_model_list
-    brand_name = params[:id]
+  def set_model_list(brand_name = params[:id])
     brand_link = @brand_list.select { |brand_link| brand_link[:name] == brand_name }.first
     @model_list = load_models brand_link
   end
+
+  private
 
   def load_brands
     brand_list = []
@@ -30,8 +31,6 @@ module BrandsHelper
     end
     model_list
   end
-
-  private
 
   def scan_page_for_model_links(page, model_list, brand_link, site_settings)
     page.scan(site_settings[:model_link_regexp]).each do |link|
