@@ -1,8 +1,16 @@
 ru:
   brands:
     index:
-      brand_list: Список брендов
+      brand_list:
+        &brands Список брендов
   shared:
-    header:
+    app_links:
+      brand_list: *brands
+      github_repo: Репозиторий
+    head:
       title:
-        Тест201607082330
+        &app_title Тест201607082330
+    header:
+      title: *app_title
+    sidebar:
+      title: *app_title

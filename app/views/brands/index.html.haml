@@ -5,16 +5,11 @@
         %h4.mdl-cell.mdl-cell--12-col
           = "#{t('.brand_list')} (#{host})"
         - brands.each do |brand_link|
-          = link_to brand_link[:href], class: 'brand-link', data: brand_link do
+          = link_to brand_path(id: brand_link[:name]), class: 'brand-link', data: brand_link.merge(type: 'brand-link') do
             .section__circle-container.mdl-cell.mdl-cell--2-col.mdl-cell--1-col-phone
               .section__circle-container__circle.mdl-color--primary
             .section__text
               = brand_link[:name]
     .mdl-card__actions
       %a.mdl-button{href: '#'} Read our features
-  %button#btn2.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon
-    %i.material-icons more_vert
-  %ul.mdl-menu.mdl-js-menu.mdl-menu--bottom-right{for: 'btn2'}
-    %li.mdl-menu__item Lorem
-    %li.mdl-menu__item{disabled: 'disabled'} Ipsum
-    %li.mdl-menu__item Dolor
+  = render 'shared/top_submenu'

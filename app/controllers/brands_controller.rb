@@ -1,7 +1,11 @@
 include BrandsHelper
 # Brands controller
 class BrandsController < ApplicationController
+  before_action :set_brand_list, only: [:index, :show]
+  before_action :set_model_list, only: [:show]
   def index
-    @brand_list = load_brands
+  end
+
+  def show
   end
 end
