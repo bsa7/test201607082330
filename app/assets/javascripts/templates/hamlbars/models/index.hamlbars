@@ -1,6 +1,6 @@
 %section.section--center.mdl-grid.mdl-grid--no-spacing.mdl-shadow--2dp
   {{#each model_list}}
-  %a.model-link.mdl-card.mdl-cell.mdl-cell--12-col{href: '/brands/{{brand_name}}/models/{{name}}'}
+  %a.model-link.mdl-card.mdl-cell.mdl-cell--12-col{ href: '/brands/{{brand_name}}/models/{{name_escaped}}', data: { type: 'model-link' }}
     .mdl-card__supporting-text.mdl-grid.mdl-grid--no-spacing
       .mdl-cell.mdl-cell--3-col
         %img{src: '{{img_src}}'}

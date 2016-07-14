@@ -5,7 +5,7 @@
         %h4.mdl-cell.mdl-cell--12-col
           = "#{t('.brand_list')} (#{host})"
         - brands.each do |brand_link|
-          = link_to brand_path(id: brand_link[:name]), class: 'brand-link', data: brand_link.merge(type: 'brand-link') do
+          = link_to brand_models_path(brand_id: brand_link[:name]), class: 'brand-link', data: brand_link.merge(type: 'brand-link') do
             .section__circle-container.mdl-cell.mdl-cell--2-col.mdl-cell--1-col-phone
               .section__circle-container__circle.mdl-color--primary
             .section__text

@@ -141,4 +141,8 @@ module ApplicationHelper
   rescue EncodingError
     str.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').encode('utf-8')
   end
+
+  def scan_for_all_matches(html, regexp)
+    html.scan(regexp).flatten.first
+  end
 end
