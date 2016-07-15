@@ -92,7 +92,7 @@ module ApplicationHelper
   end
 
   def initialize_contents(options)
-    options[:proxy_list].empty? ? download_within_proxy(options) : download_parallel(options)
+    options[:proxy_disabled] ? download_within_proxy(options) : download_parallel(options)
   end
 
   def download_parallel(options)
