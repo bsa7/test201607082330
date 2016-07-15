@@ -11,6 +11,7 @@ module ApplicationHelper
   end
 
   def page_load(options)
+    Rails.logger.ap page_load: options
     if options[:cache_enabled] && !cache_file_has_expired?(options)
       File.read(options[:cache_file_name])
     else
@@ -35,7 +36,24 @@ module ApplicationHelper
     compiled_rails_template
   end
 
+  def parser_settings
+    settings = load_parser_settings
+    settings[:parser_settings].map do |site_settings|
+      site_settings.each_key do |key|
+        site_settings[key] = Regexp.new(site_settings[key]) if key[/_regexp$/]
+      end
+      site_settings
+    end
+    settings
+  end
+
   private
+
+  def load_parser_settings
+    file = File.read("#{Rails.root}/config/parser.yml")
+    yaml_data = YAML.load(file).deep_symbolize_keys
+    yaml_data
+  end
 
   def read_template_content(template_file_name)
     templates_path = 'app/assets/javascripts/templates/hamlbars'
@@ -128,6 +146,17 @@ module ApplicationHelper
 
   def download_from_path(uri, http)
     request = Net::HTTP::Get.new(uri.path)
+#    browser = parser_settings[:browser_types].sample[:name]
+#    request['Accept'] = '*/*'
+#    request['Accept-Encoding'] = 'gzip, deflate, sdch'
+#    request['Accept-Language'] = 'ru,en-US;q=0.8,en;q=0.6,fr;q=0.4,ar;q=0.2,pl;q=0.2'
+#    request['Cache-Control'] = 'max-age=0'
+#    request['Cookie'] = '_ga=GA1.2.1924253491.1468579136'
+#    request['Host'] = uri.host
+#    request['Proxy-Connection'] = 'keep-alive'
+#    request['Referer'] = "http://#{uri.host}#{uri.path}"
+#    request['Upgrade-Insecure-Requests'] = 1
+#    request['User-Agent'] = browser
     body = http.request(request).body
     encode_to_utf8(body)
   end

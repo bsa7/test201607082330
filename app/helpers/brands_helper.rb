@@ -11,7 +11,7 @@ module BrandsHelper
 
   def load_brands
     brand_list = []
-    parser_settings.each do |site_settings|
+    parser_settings[:parser_settings].each do |site_settings|
       collect_brands(site_settings, brand_list)
     end
     brand_list
@@ -33,21 +33,6 @@ module BrandsHelper
 
   def slice_interval(index)
     (index * 10)..((index + 1) * 10 - 1)
-  end
-
-  def parser_settings
-    load_parser_settings.map do |site_settings|
-      site_settings.each_key do |key|
-        site_settings[key] = Regexp.new(site_settings[key]) if key[/_regexp$/]
-      end
-      site_settings
-    end
-  end
-
-  def load_parser_settings
-    file = File.read("#{Rails.root}/config/parser.yml")
-    yaml_data = YAML.load(file).deep_symbolize_keys
-    yaml_data[:parser_settings]
   end
 
   def collect_brands(site_settings, brand_list)

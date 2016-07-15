@@ -1,5 +1,6 @@
 parser_settings:
   - host: 'http://www.gsmarena.com/'
+    search_path: 'results.php3?sQuickSearch=yes&sName=<text>'
     host_check_stamp_regexp: 'GSMArena\.com'
     brand_page_link_regexp: '<a[^<]+?-\d+\.php\">[^<]+?<\/a>'
     brand_other_page_link_regexp: '<a[^<]+-p\d+\.php\">\d+<\/a>'
@@ -12,3 +13,5 @@ parser_settings:
     model_parse_link_img_src_regexp: 'src=\"?([^ ]+)\"? '
     model_parse_link_name_regexp: '>([^<]+)<'
     model_parse_link_title_regexp: 'title=\"?([^\"]+)\"? '
+browser_types:
+  - name: 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36'

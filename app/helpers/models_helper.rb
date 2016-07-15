@@ -44,16 +44,9 @@ module ModelsHelper
     @model_selected
   end
 
-  private
-
-  def set_brand_selected(brand_name)
-    set_brand_list unless @brand_list
-    @brand_selected = @brand_list.select { |brand_link| brand_link[:name] == brand_name }.first
-  end
-
   def load_models(brand_link)
     model_list = []
-    parser_settings.each do |site_settings|
+    parser_settings[:parser_settings].each do |site_settings|
       download_all_brand_pages(brand_link, site_settings).each do |page|
         scan_page_for_model_links(page, model_list, brand_link, site_settings)
       end
@@ -65,6 +58,13 @@ module ModelsHelper
     page.scan(site_settings[:model_link_regexp]).each do |link|
       model_list << parse_model_link(link.first, brand_link, site_settings)
     end
+  end
+
+  private
+
+  def set_brand_selected(brand_name)
+    set_brand_list unless @brand_list
+    @brand_selected = @brand_list.select { |brand_link| brand_link[:name] == brand_name }.first
   end
 
   def download_all_brand_pages(brand_link, site_settings)

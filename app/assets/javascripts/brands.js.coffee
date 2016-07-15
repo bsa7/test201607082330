@@ -1,21 +1,29 @@
 render_handlebars_template = (options) ->
   success_status = false
   rendered = HandlebarsTemplates[options.template_file](options.data)
-  document.querySelector('.wait-please').remove()
+  wait_cover = document.querySelector('.wait-please')
+  if wait_cover
+    wait_cover.remove()
   document.querySelector('.section--center').innerHTML = rendered
 
 query_data = (options) ->
   url = options.href
-  delete(options['href'])
+  template_file = options.template_file
+  nofollow = options.nofollow
+  $.map ['href', 'template_file', 'nofollow'], (key) ->
+    delete(options[key])
   $.ajax
     url: url
     data: options
     dataType: 'json'
     success: (data) ->
+      console.log
+        data: data
       render_handlebars_template
         data: data
-        template_file: options.template_file
-      window.history.pushState({}, options.title, url);
+        template_file: template_file
+      unless nofollow
+        window.history.pushState({}, options.title, url);
       ready()
 
 set_listener = (options) ->
@@ -37,6 +45,16 @@ ready = ->
   set_listener
     selector: '[data-type=model-link]'
     template_file: 'hamlbars/models/show'
+
+  $text_search_input = $('#text-search')
+  $text_search_input.off 'change'
+  $text_search_input.on 'change', (e) ->
+    console.log
+      search: e.target.value
+    query_data
+      href: "/search/#{e.target.value}"
+      template_file: 'hamlbars/models/index'
+      nofollow: true
 
 $(document).on 'ready page:load turbolinks:load', ->
   ready()
