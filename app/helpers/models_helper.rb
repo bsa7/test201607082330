@@ -60,6 +60,7 @@ module ModelsHelper
 
   def download_first_brand_page(brand_link, site_settings)
     brand_pages = []
+    Rails.logger.ap site_settings: site_settings, brand_link: brand_link
     url = "#{site_settings[:host]}#{brand_link[:path]}"
     brand_pages << page_load(url: url, check_stamp: site_settings[:brand_page_check_stamp_regexp])
   end
