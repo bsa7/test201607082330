@@ -146,17 +146,17 @@ module ApplicationHelper
 
   def download_from_path(uri, http)
     request = Net::HTTP::Get.new(uri.path)
-#    browser = parser_settings[:browser_types].sample[:name]
-#    request['Accept'] = '*/*'
-#    request['Accept-Encoding'] = 'gzip, deflate, sdch'
-#    request['Accept-Language'] = 'ru,en-US;q=0.8,en;q=0.6,fr;q=0.4,ar;q=0.2,pl;q=0.2'
-#    request['Cache-Control'] = 'max-age=0'
+    browser = parser_settings[:browser_types].sample[:name]
+    request['Accept'] = '*/*'
+    request['Accept-Encoding'] = 'gzip, deflate, sdch'
+    request['Accept-Language'] = 'ru,en-US;q=0.8,en;q=0.6,fr;q=0.4,ar;q=0.2,pl;q=0.2'
+    request['Cache-Control'] = 'max-age=0'
 #    request['Cookie'] = '_ga=GA1.2.1924253491.1468579136'
-#    request['Host'] = uri.host
-#    request['Proxy-Connection'] = 'keep-alive'
-#    request['Referer'] = "http://#{uri.host}#{uri.path}"
-#    request['Upgrade-Insecure-Requests'] = 1
-#    request['User-Agent'] = browser
+    request['Host'] = uri.host
+    request['Proxy-Connection'] = 'keep-alive'
+    request['Referer'] = "http://#{uri.host}#{uri.path}"
+    request['Upgrade-Insecure-Requests'] = 1
+    request['User-Agent'] = browser
     body = http.request(request).body
     encode_to_utf8(body)
   end
