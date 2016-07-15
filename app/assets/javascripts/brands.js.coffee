@@ -17,8 +17,6 @@ query_data = (options) ->
     data: options
     dataType: 'json'
     success: (data) ->
-      console.log
-        data: data
       render_handlebars_template
         data: data
         template_file: template_file
