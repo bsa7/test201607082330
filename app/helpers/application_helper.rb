@@ -11,7 +11,6 @@ module ApplicationHelper
   end
 
   def page_load(options)
-    Rails.logger.ap page_load: options
     if options[:cache_enabled] && !cache_file_has_expired?(options)
       File.read(options[:cache_file_name])
     else

@@ -27,6 +27,7 @@ before_script:
   - psql --version
   - createuser --echo -U postgres --createdb travis
   - createdb --echo -U postgres --owner "travis" test201607082330_test
+  - rm -rf tmp/cache
   - bundle exec rake db:create
   - bundle exec rake db:migrate
 before_install: gem install bundler -v 1.11.2
