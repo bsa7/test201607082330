@@ -33,10 +33,13 @@ set_listener = (options) ->
     $link_button.on 'click', (e) ->
       e.stopPropagation()
       e.preventDefault()
-      document.querySelector('.mdl-layout__content').innerHTML += '<div class="wait-please"></div>'
+      wait_cover()
       query_data
         href: e.target.getAttribute('href')
         template_file: options.template_file
+
+wait_cover = ->
+  document.querySelector('.mdl-layout__content').innerHTML += '<div class="wait-please"></div>'
 
 ready = ->
   set_listener
@@ -49,8 +52,7 @@ ready = ->
   $text_search_input = $('#text-search')
   $text_search_input.off 'change'
   $text_search_input.on 'change', (e) ->
-    console.log
-      search: e.target.value
+    wait_cover()
     query_data
       href: "/search/#{e.target.value}"
       template_file: 'hamlbars/models/index'
