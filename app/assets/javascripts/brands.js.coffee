@@ -1,7 +1,7 @@
-render_model_list_template = (data) ->
-  model_list_template = 'hamlbars/brands/show'
+render_handlebars_template = (options) ->
   success_status = false
-  rendered = HandlebarsTemplates[model_list_template](data)
+  rendered = HandlebarsTemplates[options.template_file](options.data)
+  document.querySelector('.wait-please').remove()
   document.querySelector('.section--center').innerHTML = rendered
 
 query_data = (options) ->
@@ -12,16 +12,31 @@ query_data = (options) ->
     data: options
     dataType: 'json'
     success: (data) ->
-      render_model_list_template data
+      render_handlebars_template
+        data: data
+        template_file: options.template_file
       window.history.pushState({}, options.title, url);
+      ready()
 
-$(document).on 'ready page:load', ->
-  $brand_link_button = $('[data-type=brand-link]')
-  if $brand_link_button.length > 0
-    $brand_link_button.off 'click'
-    $brand_link_button.on 'click', (e) ->
+set_listener = (options) ->
+  $link_button = $(options.selector)
+  if $link_button.length > 0
+    $link_button.off 'click'
+    $link_button.on 'click', (e) ->
       e.stopPropagation()
       e.preventDefault()
+      document.querySelector('.mdl-layout__content').innerHTML += '<div class="wait-please"></div>'
       query_data
         href: e.target.getAttribute('href')
-        title: $(e.target).data('name')
+        template_file: options.template_file
+
+ready = ->
+  set_listener
+    selector: '[data-type=brand-link]'
+    template_file: 'hamlbars/models/index'
+  set_listener
+    selector: '[data-type=model-link]'
+    template_file: 'hamlbars/models/show'
+
+$(document).on 'ready page:load turbolinks:load', ->
+  ready()

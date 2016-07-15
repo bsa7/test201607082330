@@ -18,15 +18,8 @@ RSpec.describe BrandsController, type: :controller do
     end
 
     it 'responds to custom formats when provided in the params' do
-      get :index, format: :json
+      get :index, params: { format: :json }
       expect(response.content_type).to eq 'application/json'
-    end
-  end
-
-  describe 'GET show' do
-    it 'responds to /Samsung query' do
-      get :show, id: 'Samsung'
-      expect(response.content_type).to eq 'text/html'
     end
   end
 end

@@ -1,0 +1,13 @@
+.layout-waterfall {
+  .demo-card-wide.mdl-card {
+    width: 100%;
+  }
+  .demo-card-wide > .mdl-card__title {
+    color: #fff;
+    min-height: 276px;
+    text-shadow: 1px 1px dimgray;
+  }
+  .demo-card-wide > .mdl-card__menu {
+    color: #fff;
+  }
+}

@@ -3,6 +3,8 @@ ru:
     index:
       brand_list:
         &brands Список брендов
+  common:
+    return_to_model_list: Вернуться к списку моделей
   shared:
     app_links:
       brand_list: *brands

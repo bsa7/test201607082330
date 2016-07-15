@@ -1,0 +1,33 @@
+/ Wide card with share menu button
+{{#with model}}
+:css
+  .demo-card-wide > .mdl-card__title {
+    background: url('{{img_src}}') center / cover;
+  }
+%section.section--center.mdl-grid.mdl-grid--no-spacing.mdl-shadow--2dp
+  .demo-card-wide.mdl-card.mdl-shadow--2dp
+    .mdl-card__title
+      %h2.mdl-card__title-text {{brand_name}} - {{name}}
+    .mdl-card__supporting-text
+      %section.docs-toc.docs-text-styling
+      %nav.section-content
+        %ul.demo-list-item.mdl-list
+          {{#each specs}}
+          %li.mdl-list__item
+            %h3 {{key}}
+          %li.mdl-list__item
+            %ul.demo-list-item.mdl-list
+              {{#each value}}
+              %li.mdl-list__item
+                %strong {{key}}
+                = ':'
+                {{value}}
+              {{/each}}
+          {{/each}}
+    .mdl-card__actions.mdl-card--border
+      %a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect{ href: '/brands/{{brand_name}}/models' }
+        = I18n.t('.common.return_to_model_list')
+    .mdl-card__menu
+      %button.mdl-button.mdl-button--icon.mdl-js-button.mdl-js-ripple-effect
+        %i.material-icons share
+{{/with}}

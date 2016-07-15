@@ -25,11 +25,9 @@ module ApplicationHelper
   end
 
   def compile_rails_template(template_file_name)
-    templates_path = 'app/assets/javascripts/templates/hamlbars'
-    template_full_path = "#{Rails.root}/#{templates_path}/#{template_file_name}"
-    template_content = File.read(template_full_path)
+    template_content = read_template_content(template_file_name)
     if template_file_name[/\.hbs\.erb\z/]
-      compiled_rails_template = ERB.new(template_content).result()
+      compiled_rails_template = ERB.new(template_content).result
     elsif template_file_name[/\.hamlbars\z/]
       stub = ''
       compiled_rails_template = Haml::Engine.new(template_content).render(stub)
@@ -38,6 +36,12 @@ module ApplicationHelper
   end
 
   private
+
+  def read_template_content(template_file_name)
+    templates_path = 'app/assets/javascripts/templates/hamlbars'
+    template_full_path = "#{Rails.root}/#{templates_path}/#{template_file_name}"
+    File.read(template_full_path)
+  end
 
   def check_expiration(options)
     if File.exist?(options[:cache_file_name])
@@ -140,5 +144,9 @@ module ApplicationHelper
     cleaned.valid_encoding? ? cleaned : str.encode('UTF-8', 'Windows-1251')
   rescue EncodingError
     str.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').encode('utf-8')
+  end
+
+  def scan_for_all_matches(html, regexp)
+    html.scan(regexp).flatten.first
   end
 end
