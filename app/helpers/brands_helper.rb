@@ -14,6 +14,7 @@ module BrandsHelper
     parser_settings[:parser_settings].each do |site_settings|
       brand_list += collect_brands(site_settings)
     end
+    Rails.logger.ap brand_list: brand_list
     brand_list
   end
 
