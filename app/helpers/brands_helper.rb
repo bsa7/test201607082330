@@ -3,7 +3,7 @@ require 'yaml'
 
 # Brands Helper
 module BrandsHelper
-  def set_brand_list
+  def load_brand_list
     @brand_list = load_brands
   end
 
@@ -12,7 +12,7 @@ module BrandsHelper
   def load_brands
     brand_list = []
     parser_settings[:parser_settings].each do |site_settings|
-      collect_brands(site_settings, brand_list)
+      brand_list += collect_brands(site_settings)
     end
     brand_list
   end
@@ -31,17 +31,18 @@ module BrandsHelper
     "#{site_settings[:host]}#{parse_brand_link(link, site_settings)[:path]}"
   end
 
-  def slice_interval(index)
-    (index * 10)..((index + 1) * 10 - 1)
+  def slice_interval(index = 0, length = 10)
+    (index * length)..((index + 1) * length - 1)
   end
 
-  def collect_brands(site_settings, brand_list)
+  def collect_brands(site_settings, brand_list = [])
     stamp = site_settings[:host_check_stamp_regexp]
     brand_page = page_load(url: site_settings[:host], check_stamp: stamp, cache_enabled: true, expire_time: 24.hours)
     return unless brand_page
     brand_page.scan(site_settings[:brand_page_link_regexp]).each do |brand_link|
       brand_list << parse_brand_link(brand_link, site_settings)
     end
+    brand_list
   end
 
   def parse_brand_link(link_html, site_settings)

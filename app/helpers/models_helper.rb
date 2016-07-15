@@ -46,7 +46,8 @@ module ModelsHelper
   end
 
   def load_brand_selected(brand_name)
-    set_brand_list unless @brand_list
+    load_brand_list unless @brand_list
+    Rails.logger.ap '@brand_list': @brand_list
     @brand_selected = @brand_list.select { |brand_link| brand_link[:name] == brand_name }.first
   end
 

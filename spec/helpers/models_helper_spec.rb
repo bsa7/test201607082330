@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ModelsHelper, type: :helper do
   describe '#load_model_list' do
     it 'load models list of brand from sources' do
-      set_brand_list
+      load_brand_list
       samsung_brand_link = @brand_list.select { |brand| brand[:name][/Samsung/] }.first
       load_model_list(samsung_brand_link[:name])
       samsung_models = @model_list
