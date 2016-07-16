@@ -1,6 +1,21 @@
 require 'net/http'
 # download web pages with proxy and parallel
 module Downloaders
+  # This load web page to text variable. It can use proxies, multi threading, cache
+  #
+  # ==== Options
+  #
+  # * *required* +url+ - url of web page
+  # * +check_stamp+ - regexp for check loaded page for right results
+  # * +cache_enabled+ - true if you want use a cache of this page
+  # * +expire_time+ - timelife of cache. 24.hours for example
+  # * +proxy_disabled+ - disable use proxies if *true*
+  #
+  # ==== Example
+  #
+  # Illustrate the behaviour of this method
+  #
+  # * call *download_with_cache* method if cache is disabled or cache is obsolete
   def page_load(options)
     if options[:cache_enabled] && !cache_file_has_expired?(options)
       File.read(options[:cache_file_name])
@@ -8,6 +23,8 @@ module Downloaders
       download_with_cache(options)
     end
   end
+
+  private
 
   def download_with_cache(options)
     result = achieve do

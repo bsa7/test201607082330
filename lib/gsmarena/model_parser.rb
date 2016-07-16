@@ -1,5 +1,30 @@
 # specific gsmarena model page parser
 module Gsmarena
+  # This specific only for 'http://www.gsmarena.com/' site parser.
+  #
+  # ==== Attributes
+  #
+  # * +model_page+ - text with html of model
+  # * +model_selected+ - hash with selected model
+  #
+  # ==== Example
+  #
+  # Illustrate the behaviour of this method
+  #
+  # * scan page with regexp for blocks of specs, 'Network', 'Display' and so on.
+  # * scan each block with specs for specific block specs: Technology -> GSM / HSPA / LTE, GPRS Yes and so on
+  # * retrun hash with next structure
+  #    {
+  #      specs: [
+  #        key: :specs_section_1,
+  #        value: [
+  #          {
+  #            key: specs_item_1,
+  #            value: specs_item_value1
+  #          }, ...
+  #        ], ...
+  #      ]
+  #    }
   def load_model_for_gsmarena(model_page, model_selected)
     specs_list_block = model_page[/<div id=\"specs-list\">([\s\S]+?)<\/div>/]
     specs_sections = specs_list_block.scan(/<table[^>]+>([\s\S]+?)<\/table>/)

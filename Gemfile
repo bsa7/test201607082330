@@ -20,6 +20,7 @@ gem 'recursive-open-struct', '1.0.1'
 gem 'flavour_saver', '0.3.8'
 gem 'handlebars_assets', '0.23.0'
 gem 'handlebars', '0.8.0'
+gem 'redcarpet', '3.3.4'
 
 group :development do
   gem 'byebug'
