@@ -75,11 +75,12 @@ module ModelsHelper
   end
 
   def parse_model_link(link_html, brand_link, site_settings)
+    model_name = [scan_for_all_matches(link_html, site_settings[:model_parse_link_name_regexp], 2)].flatten
     {
       path: scan_for_all_matches(link_html, site_settings[:model_parse_link_href_regexp]),
       img_src: scan_for_all_matches(link_html, site_settings[:model_parse_link_img_src_regexp]),
-      brand_name: brand_link[:name],
-      name: scan_for_all_matches(link_html, site_settings[:model_parse_link_name_regexp]),
+      brand_name: brand_link[:name] || model_name.first,
+      name: model_name.second || model_name.first,
       title: scan_for_all_matches(link_html, site_settings[:model_parse_link_title_regexp]),
       host: site_settings[:host]
     }

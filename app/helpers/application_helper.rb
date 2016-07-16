@@ -168,7 +168,8 @@ module ApplicationHelper
     str.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').encode('utf-8')
   end
 
-  def scan_for_all_matches(html, regexp)
-    html.scan(regexp).flatten.first
+  def scan_for_all_matches(html, regexp, count = 1)
+    matches = html.scan(regexp).flatten
+    count == 1 ? matches.first : matches[0..count-1]
   end
 end

@@ -40,6 +40,7 @@ wait_cover = ->
   document.querySelector('.mdl-layout__content').innerHTML += '<div class="wait-please"></div>'
 
 ready = ->
+  componentHandler.upgradeDom()
   set_listener
     selector: '[data-type=brand-link]'
     template_file: 'hamlbars/models/index'
@@ -48,13 +49,14 @@ ready = ->
     template_file: 'hamlbars/models/show'
 
   $text_search_input = $('#text-search')
-  $text_search_input.off 'change'
-  $text_search_input.on 'change', (e) ->
-    wait_cover()
-    query_data
-      href: "/search/#{e.target.value}"
-      template_file: 'hamlbars/models/index'
-      nofollow: true
+  if $text_search_input.length > 0
+    $text_search_input.off 'change'
+    $text_search_input.on 'change', (e) ->
+      wait_cover()
+      query_data
+        href: "/search/#{e.target.value}"
+        template_file: 'hamlbars/models/index'
+        nofollow: true
 
-$(document).on 'ready page:load turbolinks:load', ->
+$(document).on 'ready page:load page:change turbolinks:load', ->
   ready()
