@@ -3,6 +3,24 @@ require 'yaml'
 
 # Brands Helper
 module BrandsHelper
+  # This collect models list of selected brand on all configured source sites
+  #
+  # ==== Attributes
+  #
+  # * this method require no attributes
+  #
+  # ==== Example
+  #
+  # Illustrate the behaviour of this action
+  #
+  # * +load_brands+ method called and variable *@brand_list* defined:
+  #    [
+  #      {
+  #        name: 'Samsung',
+  #        path: 'samsung-phones-9.php',
+  #        host: 'http://www.gsmarena.com/'
+  #      }
+  #    ]
   def load_brand_list
     @brand_list = load_brands
   end

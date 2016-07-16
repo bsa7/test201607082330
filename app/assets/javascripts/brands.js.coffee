@@ -4,7 +4,8 @@ render_handlebars_template = (options) ->
   wait_cover = document.querySelector('.wait-please')
   if wait_cover
     wait_cover.remove()
-  document.querySelector('.section--center').innerHTML = rendered
+  document.querySelector('[data-type=ajax-container]').innerHTML = rendered
+  window.scrollTo(0,0)
 
 query_data = (options) ->
   url = options.href

@@ -7,5 +7,5 @@
       = render 'shared/header'
       = render 'shared/sidebar'
       %main.mdl-layout__content
-        .mdl-layout__tab-panel.is-active
+        .mdl-layout__tab-panel.is-active{ data: { type: 'ajax-container' }}
           = yield

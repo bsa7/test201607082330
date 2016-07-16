@@ -2,6 +2,19 @@ require 'gsmarena/model_parser'
 include Gsmarena
 # Models Helper
 module ModelsHelper
+  # This collect models list of selected brand on all configured source sites
+  #
+  # ==== Attributes
+  #
+  # * +:brand_name+ - string name of brand, *Samsung* for example
+  #
+  # ==== Example
+  #
+  # Illustrate the behaviour of this action
+  #
+  # * +load_brand_selected+ method called and @brand_selected variable are defined
+  # * +load_models+ method called and @model_list variable will defined
+  #    load_model_list('Samsung')
   def load_model_list(brand_name = params[:brand_id])
     load_brand_selected(brand_name)
     @model_list = load_models @brand_selected

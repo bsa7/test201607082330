@@ -4,12 +4,40 @@ require 'downloaders'
 include Downloaders
 # Application Helper
 module ApplicationHelper
+
+  # Render handlebars template on server side
+  #
+  # ==== Attributes
+  #
+  # * +handlebars_template+ - Html text with handlebars markup
+  # * +data_hash+ - Data for handlebars
+  #
+  # ==== Example
+  #
+  # Illustrate the behaviour of the method inside views template
+  #
+  #    - template_name = 'models/show.hamlbars'
+  #    - compiled_template = compile_rails_template template_name
+  #    = render_handlebars_template(compiled_template, model: @model_selected).html_safe
   def render_handlebars_template(handlebars_template, data_hash)
     template = Tilt['handlebars'].new { handlebars_template }
     data = RecursiveOpenStruct.new(data_hash, recurse_over_arrays: true)
     template.render(data)
   end
 
+  # This compile Haml or Erb rails template to html text
+  #
+  # ==== Attributes
+  #
+  # * +template_file_name+ - file with *Haml* or *Erb* template
+  #
+  # ==== Example
+  #
+  # Illustrate the behaviour of the method inside views template
+  #
+  #    - template_name = 'models/show.hamlbars'
+  #    - compiled_template = compile_rails_template template_name
+  #
   def compile_rails_template(template_file_name)
     template_content = read_template_content(template_file_name)
     if template_file_name[/\.hbs\.erb\z/]
@@ -21,6 +49,39 @@ module ApplicationHelper
     compiled_rails_template
   end
 
+  # This compile Haml or Erb rails template to html text
+  #
+  # ==== Attributes
+  #
+  # * this method not required attributes
+  #
+  # ==== Example
+  #
+  # Method parse *config/parser.yml* settings file
+  # For use:
+  # * define parser.yml:
+  #
+  #    parser_settings:
+  #      - host: 'http://www.gsmarena.com/'
+  #        search_path: 'results.php3?sQuickSearch=yes&sName=<text>'
+  #        host_check_stamp_regexp: 'GSMArena\.com'
+  #        brand_page_link_regexp: '<a[^<]+?-\d+\.php\">[^<]+?<\/a>'
+  #        brand_other_page_link_regexp: '<a[^<]+-p\d+\.php\">\d+<\/a>'
+  # * parsed yml will be presented as Hash object:
+  #
+  #    parser_settings[:parser_settings] => {
+  #      [
+  #        host: 'http://www.gsmarena.com/',
+  #        search_path: 'results.php3?sQuickSearch=yes&sName=<text>',
+  #        host_check_stamp_regexp: 'GSMArena\.com',
+  #        brand_page_link_regexp: '<a[^<]+?-\d+\.php\">[^<]+?<\/a>',
+  #        brand_other_page_link_regexp: '<a[^<]+-p\d+\.php\">\d+<\/a>',
+  #      ]
+  #    }
+  #
+  # Remember: All keys which endings with *_regexp* will be converted from
+  # yaml string ro Regexp
+  #
   def parser_settings
     settings = load_parser_settings
     settings[:parser_settings].map do |site_settings|
