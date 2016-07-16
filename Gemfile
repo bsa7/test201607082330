@@ -22,6 +22,7 @@ gem 'handlebars_assets', '0.23.0'
 gem 'handlebars', '0.8.0'
 gem 'redcarpet', '3.3.4'
 gem 'sentry-raven', '1.2.0'
+gem 'skylight', '0.10.5'
 
 group :development do
   gem 'byebug'
