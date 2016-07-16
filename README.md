@@ -32,3 +32,6 @@ http://www.gsmarena.com/apple_iphone_6s_plus-7243.php
 
 ## Visit this app on Heroku
 [https://test201607082330.herokuapp.com/brands](https://test201607082330.herokuapp.com/brands)
+
+## RDoc
+[http://test201607082330.исчо.рф/doc/](http://test201607082330.xn--h1amiy.xn--p1ai/doc/)

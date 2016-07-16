@@ -130,13 +130,12 @@ for example</p>
 
 <h4 id="method-i-load_model_list-label-Example">Example<span><a href="#method-i-load_model_list-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h4>
 
-<p>Illustrate the behaviour of this action</p>
+<p>Illustrate the behaviour of this method</p>
 <ul><li>
-<p><code>load_brand_selected</code> method called and @brand_selected variable
+<p>call <code>load_brand_selected</code> method and @brand_selected variable
 are defined</p>
 </li><li>
-<p><code>load_models</code> method called and @model_list variable will
-defined</p>
+<p>call <code>load_models</code> method and @model_list variable will defined</p>
 
 <pre class="ruby"><span class="ruby-identifier">load_model_list</span>(<span class="ruby-string">&#39;Samsung&#39;</span>)
 </pre>
@@ -174,13 +173,48 @@ defined</p>
 
         <div class="method-description">
           
-          
+          <p>This select model from list model list of selected brand, load page with
+model info and parse it to variable @model_selected</p>
+
+<h4 id="method-i-load_model_selected-label-Attributes">Attributes<span><a href="#method-i-load_model_selected-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:brand_name</code> - string name of brand, <strong>Samsung</strong>
+for example</p>
+</li><li>
+<p><code>:model_name</code> - string name of model, *Galaxy On7 Pro* for
+example</p>
+</li></ul>
+
+<h4 id="method-i-load_model_selected-label-Example">Example<span><a href="#method-i-load_model_selected-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>Illustrate the behaviour of this method</p>
+<ul><li>
+<p>call <code>select_model</code> method and @brand_selected variable will
+defined</p>
+</li><li>
+<p>call <code>load_model_page</code> method and load page text</p>
+</li><li>
+<p>call specific site model page parse method and parse data to
+@model_selected variable:</p>
+
+<pre>{
+  specs: [
+    key: :specs_section_1,
+    value: [
+      {
+        key: specs_item_1,
+        value: specs_item_value1
+      }, ...
+    ], ...
+  ]
+}</pre>
+</li></ul>
           
           
 
           
           <div class="method-source-code" id="load_model_selected-source">
-            <pre><span class="ruby-comment"># File app/helpers/models_helper.rb, line 23</span>
+            <pre><span class="ruby-comment"># File app/helpers/models_helper.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_model_selected</span>(<span class="ruby-identifier">brand_name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:brand_id</span>], <span class="ruby-identifier">model_name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">model_selected</span> = <span class="ruby-identifier">select_model</span>(<span class="ruby-identifier">brand_name</span>, <span class="ruby-identifier">model_name</span>)
   <span class="ruby-identifier">model_page</span> = <span class="ruby-identifier">load_model_page</span>(<span class="ruby-identifier">model_name</span>, <span class="ruby-identifier">model_selected</span>)
@@ -215,7 +249,7 @@ defined</p>
 
           
           <div class="method-source-code" id="load_models-source">
-            <pre><span class="ruby-comment"># File app/helpers/models_helper.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/helpers/models_helper.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_models</span>(<span class="ruby-identifier">brand_link</span>)
   <span class="ruby-identifier">model_list</span> = []
   <span class="ruby-identifier">parser_settings</span>[<span class="ruby-value">:parser_settings</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">site_settings</span><span class="ruby-operator">|</span>
@@ -254,7 +288,7 @@ defined</p>
 
           
           <div class="method-source-code" id="scan_page_for_model_links-source">
-            <pre><span class="ruby-comment"># File app/helpers/models_helper.rb, line 39</span>
+            <pre><span class="ruby-comment"># File app/helpers/models_helper.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">scan_page_for_model_links</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">model_list</span>, <span class="ruby-identifier">brand_link</span>, <span class="ruby-identifier">site_settings</span>)
   <span class="ruby-identifier">page</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-identifier">site_settings</span>[<span class="ruby-value">:model_link_regexp</span>]).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">link</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">model_list</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">parse_model_link</span>(<span class="ruby-identifier">link</span>.<span class="ruby-identifier">first</span>, <span class="ruby-identifier">brand_link</span>, <span class="ruby-identifier">site_settings</span>)

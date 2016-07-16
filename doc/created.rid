@@ -1,4 +1,4 @@
-Sat, 16 Jul 2016 09:29:13 +0500
+Sat, 16 Jul 2016 10:45:35 +0500
 app/assets/images/github-square.svg	Thu, 14 Jul 2016 03:32:14 +0500
 app/assets/stylesheets/brands.css.scss.erb	Fri, 15 Jul 2016 03:25:41 +0500
 app/assets/stylesheets/application.css	Thu, 14 Jul 2016 03:32:14 +0500
@@ -11,7 +11,7 @@ app/jobs/application_job.rb	Thu, 14 Jul 2016 03:32:14 +0500
 app/models/application_record.rb	Thu, 14 Jul 2016 03:32:14 +0500
 app/models/proxy.rb	Thu, 14 Jul 2016 03:32:14 +0500
 app/helpers/proxy_helper.rb	Sat, 16 Jul 2016 03:29:52 +0500
-app/helpers/models_helper.rb	Sat, 16 Jul 2016 09:29:10 +0500
+app/helpers/models_helper.rb	Sat, 16 Jul 2016 10:45:27 +0500
 app/helpers/application_helper.rb	Sat, 16 Jul 2016 08:55:13 +0500
 app/helpers/search_helper.rb	Sat, 16 Jul 2016 05:16:50 +0500
 app/helpers/brands_helper.rb	Sat, 16 Jul 2016 09:26:03 +0500

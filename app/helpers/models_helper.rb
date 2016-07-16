@@ -10,16 +10,42 @@ module ModelsHelper
   #
   # ==== Example
   #
-  # Illustrate the behaviour of this action
+  # Illustrate the behaviour of this method
   #
-  # * +load_brand_selected+ method called and @brand_selected variable are defined
-  # * +load_models+ method called and @model_list variable will defined
+  # * call +load_brand_selected+ method and @brand_selected variable are defined
+  # * call +load_models+ method and @model_list variable will defined
   #    load_model_list('Samsung')
   def load_model_list(brand_name = params[:brand_id])
     load_brand_selected(brand_name)
     @model_list = load_models @brand_selected
   end
 
+  # This select model from list model list of selected brand, load page with model info
+  # and parse it to variable @model_selected
+  #
+  # ==== Attributes
+  #
+  # * +:brand_name+ - string name of brand, *Samsung* for example
+  # * +:model_name+ - string name of model, *Galaxy On7 Pro* for example
+  #
+  # ==== Example
+  #
+  # Illustrate the behaviour of this method
+  #
+  # * call +select_model+ method and @brand_selected variable will defined
+  # * call +load_model_page+ method and load page text
+  # * call specific site model page parse method and parse data to @model_selected variable:
+  #    {
+  #      specs: [
+  #        key: :specs_section_1,
+  #        value: [
+  #          {
+  #            key: specs_item_1,
+  #            value: specs_item_value1
+  #          }, ...
+  #        ], ...
+  #      ]
+  #    }
   def load_model_selected(brand_name = params[:brand_id], model_name = params[:id])
     model_selected = select_model(brand_name, model_name)
     model_page = load_model_page(model_name, model_selected)
