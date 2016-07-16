@@ -9,6 +9,7 @@ ru:
     app_links:
       brand_list: *brands
       github_repo: Репозиторий
+      root: В начало
     head:
       title:
         &app_title Тест201607082330

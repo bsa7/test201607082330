@@ -1,6 +1,8 @@
 Test 20160708
 =============
 
+## Briefing
+
 Нужно создать и деплойнуть на хероку приложение, которое из себя будет представлять 1 страницу.
 На странице 2 блока:
 
@@ -31,7 +33,9 @@ http://www.gsmarena.com/apple_iphone_6s_plus-7243.php
 [![codebeat badge](https://codebeat.co/badges/371ccf89-7f44-493d-bb74-185ee6fa2f20)](https://codebeat.co/projects/github-com-r72cccp-test201607082330)
 
 ## Visit this app on Heroku
+
 [https://test201607082330.herokuapp.com/brands](https://test201607082330.herokuapp.com/brands)
 
 ## RDoc
+
 [http://test201607082330.исчо.рф/doc/](http://test201607082330.xn--h1amiy.xn--p1ai/doc/)

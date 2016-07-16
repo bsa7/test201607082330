@@ -183,6 +183,7 @@ GEM
       railties (>= 3.2)
       tilt
     recursive-open-struct (1.0.1)
+    redcarpet (3.3.4)
     ref (2.0.0)
     rltk (2.2.1)
       ffi (>= 1.0.0)
@@ -287,6 +288,7 @@ DEPENDENCIES
   rails (= 5.0.0)
   react-rails (= 1.8.0)
   recursive-open-struct (= 1.0.1)
+  redcarpet (= 3.3.4)
   rspec-rails (~> 3.4)
   rubocop (= 0.41.2)
   sass-rails (= 5.0.5)
