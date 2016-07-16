@@ -1,6 +1,17 @@
 include ProxyHelper
 # Proxy model
 class Proxy < ApplicationRecord
+  # This load array of strings like '123.234.213.132:3221' from Proxy model
+  #
+  # ==== Attributes
+  #
+  # * +:length+ - count of proxies
+  #
+  # ==== Example
+  #
+  # Illustrate the behaviour of this method
+  #
+  # * call thread-safe +read_list+ method for loading proxies from table
   def self.get_list(length)
     count = Proxy.count_of_records
     percent = length / count.to_f * 100
@@ -11,6 +22,18 @@ class Proxy < ApplicationRecord
     end
   end
 
+  # This mark proxy as good or bad
+  #
+  # ==== Attributes
+  #
+  # * *required* +:ip_port+ - string variable for identify proxy
+  # * +:state+ - symbol :good or :bad (default)
+  #
+  # ==== Example
+  #
+  # Illustrate the behaviour of this method
+  #
+  # * find this proxy in table and increase attempts count. Succes increase if state are :good
   def self.mark_as(options)
     proxy = Proxy.find_by_ip_port(options[:ip_port])
     if proxy
@@ -21,6 +44,18 @@ class Proxy < ApplicationRecord
     proxy.total_attempts_count
   end
 
+  # This update Proxy model with new uniq proxies
+  #
+  # ==== Attributes
+  #
+  # * This methon no require attributes
+  #
+  # ==== Example
+  #
+  # Illustrate the behaviour of this method
+  #
+  # * call +load_new_proxies+ method, compare list with existing proxies
+  # * if new proxies are present - add this proxies to Proxy
   def self.update
     proxy_list = load_new_proxies.uniq - Proxy.all.pluck(:ip_port)
     Proxy.add_list(proxy_list) if proxy_list.present?
