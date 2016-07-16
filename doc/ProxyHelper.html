@@ -65,12 +65,6 @@
     
     <li ><a href="#method-i-load_new_proxies">#load_new_proxies</a>
     
-    <li ><a href="#method-i-load_proxy_index">#load_proxy_index</a>
-    
-    <li ><a href="#method-i-parse_proxy_list_links">#parse_proxy_list_links</a>
-    
-    <li ><a href="#method-i-parse_proxy_list_text">#parse_proxy_list_text</a>
-    
   </ul>
 </div>
 
@@ -120,13 +114,25 @@
 
         <div class="method-description">
           
-          
+          <p>This load array of uniq proxies</p>
+
+<h4 id="method-i-load_new_proxies-label-Attributes">Attributes<span><a href="#method-i-load_new_proxies-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p>This method no require attributes</p>
+</li></ul>
+
+<h4 id="method-i-load_new_proxies-label-Example">Example<span><a href="#method-i-load_new_proxies-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>Illustrate the behaviour of this method</p>
+<ul><li>
+<p>call <strong>load_proxy_index</strong> method and</p>
+</li></ul>
           
           
 
           
           <div class="method-source-code" id="load_new_proxies-source">
-            <pre><span class="ruby-comment"># File app/helpers/proxy_helper.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/helpers/proxy_helper.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_new_proxies</span>
   <span class="ruby-identifier">txt_file_links</span> = <span class="ruby-identifier">parse_proxy_list_links</span> <span class="ruby-operator">||</span> []
   <span class="ruby-identifier">proxies</span> = <span class="ruby-identifier">txt_file_links</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file_link</span><span class="ruby-operator">|</span>
@@ -134,106 +140,6 @@
     <span class="ruby-identifier">parse_proxy_list_text</span>(<span class="ruby-identifier">page_load</span>(<span class="ruby-identifier">url</span><span class="ruby-operator">:</span> <span class="ruby-identifier">url</span>, <span class="ruby-identifier">check_stamp</span><span class="ruby-operator">:</span> <span class="ruby-regexp">/(\d+\.){3}\d+:\d+/</span>))
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">proxies</span>.<span class="ruby-identifier">flatten</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-load_proxy_index" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">load_proxy_index</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="load_proxy_index-source">
-            <pre><span class="ruby-comment"># File app/helpers/proxy_helper.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_proxy_index</span>
-  <span class="ruby-identifier">url</span> = <span class="ruby-string">&#39;http://webanetlabs.net/publ/24&#39;</span>
-  <span class="ruby-identifier">page_load</span>(<span class="ruby-identifier">url</span><span class="ruby-operator">:</span> <span class="ruby-identifier">url</span>, <span class="ruby-identifier">check_stamp</span><span class="ruby-operator">:</span> <span class="ruby-regexp">/webanet\.ucoz\.ru/</span>, <span class="ruby-identifier">cache_enabled</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-parse_proxy_list_links" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">parse_proxy_list_links</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="parse_proxy_list_links-source">
-            <pre><span class="ruby-comment"># File app/helpers/proxy_helper.rb, line 9</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">parse_proxy_list_links</span>
-  <span class="ruby-identifier">load_proxy_index</span><span class="ruby-operator">&amp;</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\/freeproxy\/proxylist_at_[0-9\.]+.txt/</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-parse_proxy_list_text" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">parse_proxy_list_text</span><span
-            class="method-args">(text)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="parse_proxy_list_text-source">
-            <pre><span class="ruby-comment"># File app/helpers/proxy_helper.rb, line 13</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">parse_proxy_list_text</span>(<span class="ruby-identifier">text</span>)
-  <span class="ruby-identifier">text</span><span class="ruby-operator">&amp;</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/^\d+\.\d+\.\d+\.\d+:\d+/</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           

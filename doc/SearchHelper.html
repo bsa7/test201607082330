@@ -114,13 +114,31 @@
 
         <div class="method-description">
           
-          
+          <p>This load array of models, finded on configured sites by
+<strong>text</strong></p>
+
+<h4 id="method-i-search_models-label-Attributes">Attributes<span><a href="#method-i-search_models-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><strong>text</strong> - html page from site which return search results</p>
+</li></ul>
+
+<h4 id="method-i-search_models-label-Example">Example<span><a href="#method-i-search_models-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>Illustrate the behaviour of this method</p>
+<ul><li>
+<p>call <strong>page_load</strong> method for each configured site</p>
+</li><li>
+<p>call <strong>scan_page_for_model_links</strong> method for each downloaded
+page - send request to configured site</p>
+</li></ul>
+
+<p>and parse results for model links return as array</p>
           
           
 
           
           <div class="method-source-code" id="search_models-source">
-            <pre><span class="ruby-comment"># File app/helpers/search_helper.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/helpers/search_helper.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search_models</span>(<span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">model_list</span> = []
   <span class="ruby-identifier">parser_settings</span>[<span class="ruby-value">:parser_settings</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">site_settings</span><span class="ruby-operator">|</span>

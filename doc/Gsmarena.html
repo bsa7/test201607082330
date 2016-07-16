@@ -114,13 +114,46 @@
 
         <div class="method-description">
           
-          
+          <p>This specific only for &#39;<a
+href="http://www.gsmarena.com">www.gsmarena.com</a>/&#39; site parser.</p>
+
+<h4 id="method-i-load_model_for_gsmarena-label-Attributes">Attributes<span><a href="#method-i-load_model_for_gsmarena-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>model_page</code> - text with html of model</p>
+</li><li>
+<p><code>model_selected</code> - hash with selected model</p>
+</li></ul>
+
+<h4 id="method-i-load_model_for_gsmarena-label-Example">Example<span><a href="#method-i-load_model_for_gsmarena-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>Illustrate the behaviour of this method</p>
+<ul><li>
+<p>scan page with regexp for blocks of specs, &#39;Network&#39;,
+&#39;Display&#39; and so on.</p>
+</li><li>
+<p>scan each block with specs for specific block specs: Technology -&gt; GSM /
+HSPA / LTE, GPRS Yes and so on</p>
+</li><li>
+<p>retrun hash with next structure</p>
+
+<pre>{
+  specs: [
+    key: :specs_section_1,
+    value: [
+      {
+        key: specs_item_1,
+        value: specs_item_value1
+      }, ...
+    ], ...
+  ]
+}</pre>
+</li></ul>
           
           
 
           
           <div class="method-source-code" id="load_model_for_gsmarena-source">
-            <pre><span class="ruby-comment"># File lib/gsmarena/model_parser.rb, line 3</span>
+            <pre><span class="ruby-comment"># File lib/gsmarena/model_parser.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_model_for_gsmarena</span>(<span class="ruby-identifier">model_page</span>, <span class="ruby-identifier">model_selected</span>)
   <span class="ruby-identifier">specs_list_block</span> = <span class="ruby-identifier">model_page</span>[<span class="ruby-regexp">/&lt;div id=\&quot;specs-list\&quot;&gt;([\s\S]+?)&lt;\/div&gt;/</span>]
   <span class="ruby-identifier">specs_sections</span> = <span class="ruby-identifier">specs_list_block</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/&lt;table[^&gt;]+&gt;([\s\S]+?)&lt;\/table&gt;/</span>)
