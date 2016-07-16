@@ -21,6 +21,7 @@ gem 'flavour_saver', '0.3.8'
 gem 'handlebars_assets', '0.23.0'
 gem 'handlebars', '0.8.0'
 gem 'redcarpet', '3.3.4'
+gem 'sentry-raven', '1.2.0'
 
 group :development do
   gem 'byebug'
