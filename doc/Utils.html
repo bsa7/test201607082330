@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Utils - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-cache_file_has_expired-3F">#cache_file_has_expired?</a>
+    
+    <li ><a href="#method-i-check_expiration">#check_expiration</a>
+    
+    <li ><a href="#method-i-encode_to_utf8">#encode_to_utf8</a>
+    
+    <li ><a href="#method-i-file_age">#file_age</a>
+    
+    <li ><a href="#method-i-file_write">#file_write</a>
+    
+    <li ><a href="#method-i-url_to_filename">#url_to_filename</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Utils">
+  <h1 id="module-Utils" class="module">
+    module Utils
+  </h1>
+
+  <section class="description">
+    
+<p>other functionalities</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-cache_file_has_expired-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cache_file_has_expired?</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="cache_file_has_expired-3F-source">
+            <pre><span class="ruby-comment"># File lib/utils.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">cache_file_has_expired?</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:cache_file_name</span>] = <span class="ruby-node">&quot;#{Rails.root}/tmp/cache/#{url_to_filename(options[:url])}&quot;</span>
+  <span class="ruby-identifier">check_expiration</span>(<span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-check_expiration" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_expiration</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="check_expiration-source">
+            <pre><span class="ruby-comment"># File lib/utils.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">check_expiration</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:cache_file_name</span>])
+    <span class="ruby-identifier">file_age</span>(<span class="ruby-identifier">options</span>) <span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">options</span>[<span class="ruby-value">:expire_time</span>] <span class="ruby-operator">||=</span> <span class="ruby-value">24</span>.<span class="ruby-identifier">hours</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-encode_to_utf8" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">encode_to_utf8</span><span
+            class="method-args">(str)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="encode_to_utf8-source">
+            <pre><span class="ruby-comment"># File lib/utils.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">encode_to_utf8</span>(<span class="ruby-identifier">str</span>)
+  <span class="ruby-identifier">cleaned</span> = <span class="ruby-identifier">str</span>.<span class="ruby-identifier">dup</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-string">&#39;UTF-8&#39;</span>)
+  <span class="ruby-identifier">cleaned</span>.<span class="ruby-identifier">valid_encoding?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">cleaned</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">str</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-string">&#39;UTF-8&#39;</span>, <span class="ruby-string">&#39;Windows-1251&#39;</span>)
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">EncodingError</span>
+  <span class="ruby-identifier">str</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-string">&#39;UTF-8&#39;</span>, <span class="ruby-string">&#39;binary&#39;</span>, <span class="ruby-identifier">invalid</span><span class="ruby-operator">:</span> <span class="ruby-value">:replace</span>, <span class="ruby-keyword">undef</span><span class="ruby-operator">:</span> <span class="ruby-value">:replace</span>, <span class="ruby-identifier">replace</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">encode</span>(<span class="ruby-string">&#39;utf-8&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-file_age" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">file_age</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="file_age-source">
+            <pre><span class="ruby-comment"># File lib/utils.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">file_age</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">getlocal</span> <span class="ruby-operator">-</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">ctime</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:cache_file_name</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-file_write" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">file_write</span><span
+            class="method-args">(file_name, file_content)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="file_write-source">
+            <pre><span class="ruby-comment"># File lib/utils.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">file_write</span>(<span class="ruby-identifier">file_name</span>, <span class="ruby-identifier">file_content</span>)
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>(<span class="ruby-identifier">file_name</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\/[^\/]+\z/</span>, <span class="ruby-string">&#39;&#39;</span>))
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file_name</span>, <span class="ruby-string">&#39;w&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">file</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">file_content</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-url_to_filename" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">url_to_filename</span><span
+            class="method-args">(url)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="url_to_filename-source">
+            <pre><span class="ruby-comment"># File lib/utils.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">url_to_filename</span>(<span class="ruby-identifier">url</span>)
+  <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">url</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
